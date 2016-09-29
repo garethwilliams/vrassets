@@ -10,6 +10,7 @@
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
     <script src="components/set-image.js"></script>
+    <script src="components/funcs.js"></script>
     <script src="components/update-raycaster.js"></script>
   </head>
   <body>
@@ -20,7 +21,7 @@
         <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
         <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
         <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-        <img id="cubes" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/boat-harbor.jpg">
+        <img id="cubes" crossorigin="anonymous" rotation="180 180 0" src="https://garethwilliams.github.io/vrassets/protos/360test/images/boat-harbor.jpg">
         <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
 
         <!-- Image link template to be reused. -->
@@ -31,21 +32,48 @@
             event-set__2="_event: mouseup; scale: 1.2 1.2 1"
             event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
             event-set__4="_event: mouseleave; scale: 1 1 1"
-            set-image="on: click; target: #image-360; src: {{ src }}"
             sound="on: click; src: #click-sound"
+            hideMain="on: click; target: #mainScene; visible: false;"
+            showSub="on: click; target: {{ scene }}; visible: true;"
             update-raycaster="#cursor"></a-plane>
         </script>
       </a-assets>
 
       <!-- 360-degree image. -->
-      <a-sky id="image-360" radius="10" src="#city"></a-sky>
+      <a-entity class="scene" id="mainScene" visible="true">
+        <a-sky id="image-360" radius="10" src="#city" rotation="-10 50 -10"></a-sky>
+      </a-entity>
+
+      <a-entity class="scene" id="subOne" visible="false" >
+        <a-sky id="image-360" radius="10" src="#cubes" rotation="10 230 10"></a-sky>
+      </a-entity>
+
+      <script type="text/javascript">
+
+  function jumpBoat() {
+    document.getElementById('mainScene').setAttribute('visible', 'false')
+    document.getElementById('subOne').setAttribute('visible', 'true')
+    document.getElementById('links').setAttribute('visible', 'false')
+    document.getElementById('backMain').setAttribute('visible', 'true')
+  }
+
+  function jumpMain() {
+    document.getElementById('mainScene').setAttribute('visible', 'true')
+    document.getElementById('subOne').setAttribute('visible', 'false')
+    document.getElementById('links').setAttribute('visible', 'true')
+    document.getElementById('backMain').setAttribute('visible', 'false')
+
+  }
+  </script>
 
       <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="8 0 -2" rotation="0 -75 0">
-        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
+      <a-entity id="links" layout="type: line; margin: 1.5" position="2 -1 -5" rotation="-10 -20 0" visible="true">
+        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb" data-scene="#subOne" onclick="jumpBoat()" ></a-entity>
        <!--  <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
         <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity> -->
       </a-entity>
+
+      <a-plane id="backMain" src="#city-thumb" height="1" width="1" position="0 -4.5 0" rotation="-65 -20 -1" onclick="jumpMain()" visible="false"></a-plane>
 
       <!-- Camera + cursor. -->
       <a-entity camera look-controls>
@@ -59,3 +87,10 @@
     </a-scene>
   </body>
 </html>
+
+
+
+
+
+
+<!-- set-image="on: click; target: #image-360; src: {{ src }}" -->
