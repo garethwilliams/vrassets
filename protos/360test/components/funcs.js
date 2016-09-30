@@ -1,12 +1,3 @@
-// mainScene
-
-// document.getElementById("mainScene").style.visible = "visible";
-
-
-// var element = document.getElementById("mainScene"); 
-// element.setAttribute("visible", "false")
-
-// $('mainScene').attr('visible','false')
 
 
 
