@@ -20,6 +20,8 @@
             <img id="harbourLabel" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/harbourside.png">
             <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/marker.png">
             <img id="sailingMast" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sailingMast.png">
+            <img id="porthole" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/porthole.png">
+            <img id="sail" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sail.png">
 
             <a-mixin id="areaSpace" begin="fusing" easing="ease-in" attribute="scale"
              fill="forwards" from="1 1 1" to="1.2 1.2 1.2" dur="200"></a-mixin>
@@ -44,8 +46,26 @@
             </a-image>
         </a-entity>
 
-            <a-image id="markerTwo" src="#marker" height="1" width="1" position="3.5 0 -8" rotation="2 5 0" onclick="" visible="true"></a-image>
-            <a-image id="markerThree" src="#marker" height="1" width="1" position="5.74 7 -0.5" rotation="2 -60 0" onclick="" visible="true"></a-image>
+        <a-entity onclick="openMrkTwo()">
+            <a-image id="markerTwo" src="#marker" height="1" width="1" position="3.5 0 -8" rotation="2 5 0" onclick="" visible="true">
+            </a-image>
+        </a-entity>
+        <a-entity>
+            <a-image id="mrkTwoInfo" src="#porthole" height="1" width="1" position="5.17 3.00 -5.28" rotation="2 -32.84 0" scale="5 5 5" onclick="" visible="false">
+            </a-image>
+        </a-entity>
+
+        <a-entity onclick="openMrkThree()">
+            <a-image id="markerThree" src="#marker" height="1" width="1" position="5.74 7 -0.5" rotation="2 -60 0" onclick="" visible="true">
+            </a-image>
+        </a-entity>
+        <a-entity>
+            <a-image id="mrkThreeInfo" src="#sail" height="1" width="1" position="5 4.58 2.17" rotation="2 -84.46 0" scale="5 5 5" onclick="" visible="false">
+            </a-image>
+        </a-entity>
+
+<!--             <a-image id="markerTwo" src="#marker" height="1" width="1" position="3.5 0 -8" rotation="2 5 0" onclick="" visible="true"></a-image>
+            <a-image id="markerThree" src="#marker" height="1" width="1" position="5.74 7 -0.5" rotation="2 -60 0" onclick="" visible="true"></a-image> -->
 
         </a-entity>
 
@@ -65,11 +85,28 @@
                 document.getElementById('boatScene').setAttribute('visible', 'false')
                 document.getElementById('boatLabelLink').setAttribute('visible', 'true')
                 document.getElementById('harbourLabelLink').setAttribute('visible', 'false')
+                document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
+                document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
+                document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
 
             }
 
             function openMrkOne() {
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'true')
+                document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
+                document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
+            }
+
+            function openMrkTwo() {
+                document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
+                document.getElementById('mrkTwoInfo').setAttribute('visible', 'true')
+                document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
+            }
+
+            function openMrkThree() {
+                document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
+                document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
+                document.getElementById('mrkThreeInfo').setAttribute('visible', 'true')
             }
         </script>
 
