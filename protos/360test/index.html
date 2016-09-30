@@ -76,14 +76,34 @@
       <a-plane id="backMain" src="#city-thumb" height="1" width="1" position="0 -4.5 0" rotation="-65 -20 -1" onclick="jumpMain()" visible="false"></a-plane>
 
       <!-- Camera + cursor. -->
-      <a-entity camera look-controls>
+<!--       <a-entity camera look-controls>
         <a-cursor id="cursor"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
           animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
           event-set__1="_event: mouseenter; color: springgreen"
           event-set__2="_event: mouseleave; color: black"
-          raycaster="objects: .link"></a-cursor>
+          raycaster="objects: .link"
+          fuse="true"></a-cursor>
+      </a-entity> -->
+
+
+<a-entity position="0 2.2 4">
+    <a-entity camera look-controls wasd-controls>
+      <a-entity position="0 0 -3"
+                geometry="primitive: ring; radiusOuter: 0.30;
+                          radiusInner: 0.20;"
+                material="color: cyan; shader: flat"
+                cursor="maxDistance: 30; fuse: true">
+        <a-animation begin="click" easing="ease-in" attribute="scale"
+             fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+        <a-animation begin="fusing" easing="ease-in" attribute="scale"
+             fill="forwards" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
       </a-entity>
+    </a-entity>
+  </a-entity>
+  
+
+
     </a-scene>
   </body>
 </html>
