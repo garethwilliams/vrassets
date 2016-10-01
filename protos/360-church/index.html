@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>NT Proto</title>
+    <title>NT Church proto</title>
     <meta name="description" content="A-Frame NT Proto">
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
     <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
@@ -21,7 +21,7 @@
             <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/marker.png">
 
             <!-- sound -->
-            <audio id="ambient" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/sound/ambient.m4a"></audio>
+            <audio id="ambient" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/sound/ambient.mp3"></audio>
 
             <!-- panels -->
             <img id="alterContinue" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/move-alter.png">
@@ -39,6 +39,9 @@
 
         <a-entity class="scene" id="mainScene" visible="true">
             <a-sky id="main360" radius="10" src="#homeArea" rotation="0 88 -8.48"></a-sky>
+            <!-- sound -->
+            <a-entity sound="src: #ambient; autoplay: true"></a-entity>
+
         </a-entity>
 
         <a-entity class="scene" id="firstScene" visible="false" >
@@ -118,12 +121,6 @@
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'true')
             }
         </script>
-
-        <!-- sound -->
-
-        <a-entity id="sound" geometry="primitive: plane" material="color: blue"
-          position="00 0 0" sound="#ambient; autoplay: true"></a-entity>
-
 
         <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="true"></a-image>
 
