@@ -13,16 +13,21 @@
   <body>
     <a-scene>
         <a-assets>
-            <img id="mainArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/pan-harborside.jpg">
-            <img id="boatArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/boat-harbor.jpg">
+            <!-- panoramas -->
+            <img id="home" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/home.jpg">
+            <img id="alter" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/alter.jpg">
 
+            <!-- marker -->
+            <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/marker.png">
+
+            <!-- panels -->
             <img id="boatLabel" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/boat.png">
             <img id="harbourLabel" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/harbourside.png">
-            <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/marker.png">
             <img id="sailingMast" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sailingMast.png">
             <img id="porthole" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/porthole.png">
             <img id="sail" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sail.png">
 
+            <!-- mixins -->
             <a-mixin id="areaSpace" begin="fusing" easing="ease-in" attribute="scale"
              fill="forwards" from="1 1 1" to="1.2 1.2 1.2" dur="200"></a-mixin>
 
@@ -41,6 +46,7 @@
             </a-image>
             <a-animation attribute="scale" from="0" to="1" fill="forwards" begin="10000"></a-animation>
         </a-entity>
+
         <a-entity>
             <a-image id="mrkOneInfo" src="#sailingMast" height="1" width="1" position="-5.17 0.53 -6.33" rotation="2 25 0" scale="5 5 5" onclick="" visible="false">
             </a-image>
