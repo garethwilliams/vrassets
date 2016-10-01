@@ -20,9 +20,8 @@
             <!-- marker -->
             <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/marker.png">
 
-            <!-- marker -->
-            <audio id="click-sound" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/sound/ambient.m4a"></audio>
-
+            <!-- sound -->
+            <audio id="ambient" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/sound/ambient.m4a"></audio>
 
             <!-- panels -->
             <img id="alterContinue" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/move-alter.png">
@@ -119,6 +118,11 @@
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'true')
             }
         </script>
+
+        <!-- sound -->
+
+        <a-entity id="sound" geometry="primitive: plane" material="color: blue"
+          position="00 0 0" sound="#ambient; autoplay: true"></a-entity>
 
 
         <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="true"></a-image>
