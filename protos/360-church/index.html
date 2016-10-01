@@ -14,8 +14,8 @@
     <a-scene>
         <a-assets>
             <!-- panoramas -->
-            <img id="home" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/home.jpg">
-            <img id="alter" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/alter.jpg">
+            <img id="homeArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/home.jpg">
+            <img id="firstArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/alter.jpg">
 
             <!-- marker -->
             <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/marker.png">
@@ -35,11 +35,11 @@
 
 
         <a-entity class="scene" id="mainScene" visible="true">
-            <a-sky id="main360" radius="10" src="#mainArea" rotation="-10 50 -10"></a-sky>
+            <a-sky id="main360" radius="10" src="#homeArea" rotation="-10 50 -10"></a-sky>
         </a-entity>
 
         <a-entity class="scene" id="boatScene" visible="false" >
-            <a-sky id="boat360" radius="10" src="#boatArea" rotation="10 230 10"></a-sky>
+            <a-sky id="boat360" radius="10" src="#firstArea" rotation="10 230 10"></a-sky>
 
         <a-entity onclick="openMrkOne()">
             <a-image id="markerOne" src="#marker" height="1" width="1" position="-3 3 -8" rotation="2 10 0" onclick="" visible="true">
