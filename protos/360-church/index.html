@@ -21,7 +21,7 @@
             <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/marker.png">
 
             <!-- panels -->
-            <img id="boatLabel" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/boat.png">
+            <img id="aisleContinue" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/boat.png">
             <img id="harbourLabel" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/harbourside.png">
             <img id="sailingMast" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sailingMast.png">
             <img id="porthole" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/porthole.png">
@@ -81,7 +81,7 @@
             function jumpBoat() {
                 document.getElementById('mainScene').setAttribute('visible', 'false')
                 document.getElementById('boatScene').setAttribute('visible', 'true')
-                document.getElementById('boatLabelLink').setAttribute('visible', 'false')
+                document.getElementById('aisleContinueLink').setAttribute('visible', 'false')
                 document.getElementById('harbourLabelLink').setAttribute('visible', 'true')
                 // document.querySelector('#markerOne').emit('mrkOneIn')
             }
@@ -89,7 +89,7 @@
             function jumpMain() {
                 document.getElementById('mainScene').setAttribute('visible', 'true')
                 document.getElementById('boatScene').setAttribute('visible', 'false')
-                document.getElementById('boatLabelLink').setAttribute('visible', 'true')
+                document.getElementById('aisleContinueLink').setAttribute('visible', 'true')
                 document.getElementById('harbourLabelLink').setAttribute('visible', 'false')
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
@@ -117,7 +117,7 @@
         </script>
 
 
-        <a-image id="boatLabelLink" src="#boatLabel" height="1" width="2.2" position="2 -1 -5" rotation="-12.45 -19 4.12" onclick="jumpBoat()" visible="true"></a-image>
+        <a-image id="aisleContinueLink" src="#aisleContinue" height="1" width="2.2" position="2 -1 -5" rotation="-12.45 -19 4.12" onclick="jumpBoat()" visible="true"></a-image>
 
         <a-image id="harbourLabelLink" src="#harbourLabel" height="1" width="2.2" position="0 -2.8 0" rotation="-55 -20 -1" onclick="jumpMain()" visible="false"></a-image>
 
