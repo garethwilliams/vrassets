@@ -40,24 +40,26 @@
         <a-entity class="scene" id="mainScene" visible="true">
             <a-sky id="main360" radius="10" src="#homeArea" rotation="0 88 -8.48"></a-sky>
             <!-- sound -->
-            <a-entity sound="src: #ambient; autoplay: true"></a-entity>
+            <a-entity sound="src: #ambient; autoplay: true; loop: true;"></a-entity>
 
         </a-entity>
 
         <a-entity class="scene" id="firstScene" visible="false" >
             <a-sky id="first360" radius="10" src="#firstArea" rotation="0 270 0"></a-sky>
 
+        <!-- marker one -->
         <a-entity onclick="openMrkOne()">
-            <a-image id="markerOne" src="#marker" height="1" width="1" position="-3 3 -8" rotation="2 10 0" onclick="" visible="true">
+            <a-image id="markerOne" src="#marker" height="1.7" width="2" position="1 1 -9" rotation="0 0 0" onclick="" visible="true">
             </a-image>
             <a-animation attribute="scale" from="0" to="1" fill="forwards" begin="10000"></a-animation>
         </a-entity>
 
-        <a-entity>
-            <a-image id="mrkOneInfo" src="#sailingMast" height="1" width="1" position="-5.17 0.53 -6.33" rotation="2 25 0" scale="5 5 5" onclick="" visible="false">
-            </a-image>
-        </a-entity>
+            <a-entity>
+                <a-image id="mrkOneInfo" src="#sailingMast" height="1" width="1" position="-5.17 0.53 -6.33" rotation="2 25 0" scale="5 5 5" onclick="" visible="false">
+                </a-image>
+            </a-entity>
 
+        <!-- marker one -->
         <a-entity onclick="openMrkTwo()">
             <a-image id="markerTwo" src="#marker" height="1" width="1" position="3.5 0 -8" rotation="2 5 0" onclick="" visible="true">
             </a-image>
