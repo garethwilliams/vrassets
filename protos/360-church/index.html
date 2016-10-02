@@ -14,6 +14,7 @@
     <a-scene>
         <a-assets>
             <!-- panoramas -->
+            <img id="holding" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/holding.jpg">
             <img id="homeArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/home.jpg">
             <img id="firstArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/alter.jpg">
 
@@ -36,12 +37,18 @@
 
         </a-assets>
 
+        <!-- sound -->
+        <a-entity sound="src: #ambient; autoplay: true; loop: true;"></a-entity>
+        <!-- #sound -->
 
-        <a-entity class="scene" id="mainScene" visible="true">
+        <!-- holding scene -->
+        <a-entity class="scene" id="holdingScene" visible="true">
+            <a-sky id="holding360" radius="10" src="#holding" rotation="0 88 -8.48"></a-sky>
+        </a-entity>
+        <!-- #holding scene -->
+
+        <a-entity class="scene" id="mainScene" visible="false">
             <a-sky id="main360" radius="10" src="#homeArea" rotation="0 88 -8.48"></a-sky>
-            <!-- sound -->
-            <a-entity sound="src: #ambient; autoplay: true; loop: true;"></a-entity>
-
         </a-entity>
 
         <a-entity class="scene" id="firstScene" visible="false" >
@@ -86,6 +93,14 @@
 
         <script type="text/javascript">
 
+            function jumpholding() {
+                document.getElementById('holdingScene').setAttribute('visible', 'true')
+                document.getElementById('mainScene').setAttribute('visible', 'false')
+                document.getElementById('firstScene').setAttribute('visible', 'false')
+                document.getElementById('alterContinueLink').setAttribute('visible', 'false')
+                document.getElementById('aisleContinueLink').setAttribute('visible', 'false')
+            }
+
             function jumpBoat() {
                 document.getElementById('mainScene').setAttribute('visible', 'false')
                 document.getElementById('firstScene').setAttribute('visible', 'true')
@@ -102,7 +117,6 @@
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
-
             }
 
             function openMrkOne() {
@@ -124,8 +138,7 @@
             }
         </script>
 
-        <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="true"></a-image>
-
+        <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="false"></a-image>
         <a-image id="aisleContinueLink" src="#aisleContinue" height="3.50" width="2.10" position="0 0 8" rotation="0 180 0" onclick="jumpMain()" visible="false"></a-image>
 
 
