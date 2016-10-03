@@ -154,7 +154,7 @@
             }
         </script>
 
-        <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="false" data-interactive="true"></a-image>
+        <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -1.9 -8.5" rotation="0 0 0" onclick="jumpBoat()" visible="false" data-interactive="true"></a-image>
 
         <a-image id="returnMiddleLink" src="#returnMiddle" height="3.50" width="2.10" position="0 -7 -6" rotation="-130 180 180" onclick="jumpMain()" visible="false" data-interactive="true"></a-image>
 
@@ -184,8 +184,15 @@
 
         <a-camera position="0 2.2 4" target-indicator="target: #alterContinueLink;">
 
-            <a-entity cursor position="0 0 -1" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="false" fuseTimeout:"2000" scale="0.04 0.04 0.04" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat">
+            <a-entity cursor="fuse:true; fuseTimeout:2000;" position="0 0 -1" geometry="primitive: ring; thetaStart:0; thetaLength:0;" scale="0.04 0.04 0.04" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat">
+
+
             </a-entity>
+
+            <a-entity geometry="primitive: circle; radius: 1" material="color: #6B3670; shader: flat"></a-entity>
+
+            <a-circle color="#CCC" radius="20"></a-circle>
+
 
             <!-- <a-cursor position="0 0 -2" geometry="primitive: circle;" scale="0.2 0.2 0.2" fuse="false" material="color: white; shader: flat"></a-cursor> -->
             
