@@ -18,6 +18,11 @@
             <img id="homeArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/home.jpg">
             <img id="firstArea" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/alter.jpg">
 
+
+            <!-- start button -->
+            <img id="startButton" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/start-button.png">            
+
+
             <!-- marker -->
             <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/marker.png">
 
@@ -93,6 +98,14 @@
 
         <script type="text/javascript">
 
+            function startExp() {
+                document.getElementById('holdingScene').setAttribute('visible', 'false')
+                document.getElementById('mainScene').setAttribute('visible', 'true')
+                document.getElementById('startButtonLink').setAttribute('visible', 'false')
+                document.getElementById('alterContinueLink').setAttribute('visible', 'true')
+                document.getElementById('aisleContinueLink').setAttribute('visible', 'false')
+            }
+
             function jumpholding() {
                 document.getElementById('holdingScene').setAttribute('visible', 'true')
                 document.getElementById('mainScene').setAttribute('visible', 'false')
@@ -149,7 +162,7 @@
                 geometry="primitive: ring; radiusOuter: 0.30;
                           radiusInner: 0.20;"
                 material="color: cyan; shader: flat"
-                cursor="maxDistance: 30; fuse: true; fuseTimeout: 1000" >
+                cursor="maxDistance: 30; fuse: false; fuseTimeout: 1000" >
                     <a-animation begin="click" easing="ease-in" attribute="scale"
              fill="backwards" from="0.1 0.1 0.1" to="0.4 0.4 0.4" dur="150">
                     </a-animation>
@@ -157,6 +170,7 @@
              fill="forwards" from="0.4 0.4 0.4" to="0.1 0.1 0.1" dur="1500">
                     </a-animation>
                 </a-entity>
+                <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -4.00" rotation="0 0 0" onclick="startExp()" visible="true"></a-image>
             </a-entity>
         </a-entity>
 
