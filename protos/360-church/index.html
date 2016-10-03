@@ -33,6 +33,8 @@
             <!-- panels -->
             <img id="alterContinue" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/move-alter.png">
             <img id="aisleContinue" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/move-aisle.png">
+            <img id="returnMiddle" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/returnMiddle.png">
+
             <img id="sailingMast" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sailingMast.png">
             <img id="porthole" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/porthole.png">
             <img id="sail" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sail.png">
@@ -104,7 +106,7 @@
                 document.getElementById('mainScene').setAttribute('visible', 'true')
                 document.getElementById('startButtonLink').setAttribute('visible', 'false')
                 document.getElementById('alterContinueLink').setAttribute('visible', 'true')
-                document.getElementById('aisleContinueLink').setAttribute('visible', 'false')
+                document.getElementById('returnMiddleLink').setAttribute('visible', 'false')
             }
 
             function jumpholding() {
@@ -112,14 +114,14 @@
                 document.getElementById('mainScene').setAttribute('visible', 'false')
                 document.getElementById('firstScene').setAttribute('visible', 'false')
                 document.getElementById('alterContinueLink').setAttribute('visible', 'false')
-                document.getElementById('aisleContinueLink').setAttribute('visible', 'false')
+                document.getElementById('returnMiddleLink').setAttribute('visible', 'false')
             }
 
             function jumpBoat() {
                 document.getElementById('mainScene').setAttribute('visible', 'false')
                 document.getElementById('firstScene').setAttribute('visible', 'true')
                 document.getElementById('alterContinueLink').setAttribute('visible', 'false')
-                document.getElementById('aisleContinueLink').setAttribute('visible', 'true')
+                document.getElementById('returnMiddleLink').setAttribute('visible', 'true')
                 // document.querySelector('#markerOne').emit('mrkOneIn')
             }
 
@@ -127,7 +129,7 @@
                 document.getElementById('mainScene').setAttribute('visible', 'true')
                 document.getElementById('firstScene').setAttribute('visible', 'false')
                 document.getElementById('alterContinueLink').setAttribute('visible', 'true')
-                document.getElementById('aisleContinueLink').setAttribute('visible', 'false')
+                document.getElementById('returnMiddleLink').setAttribute('visible', 'false')
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
@@ -154,7 +156,7 @@
 
         <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="false" data-interactive="true"></a-image>
 
-        <a-image id="aisleContinueLink" src="#aisleContinue" height="3.50" width="2.10" position="0 0 8" rotation="0 180 0" onclick="jumpMain()" visible="false"></a-image>
+        <a-image id="returnMiddleLink" src="#returnMiddle" height="3.50" width="2.10" position="0 -7 -6" rotation="-130 180 180" onclick="jumpMain()" visible="false" data-interactive="true"></a-image>
 
 <!-- 
         <a-entity position="0 2.2 4">
@@ -180,11 +182,15 @@
             </a-entity>
         </a-entity> -->
 
-        <a-camera target-indicator="target: #alterContinueLink;">
-            <a-cursor position="0 0 -1" scale="0.8 0.8 0.8" fuse="false" material="color: red; shader: flat"></a-cursor>
-            <a-cursor position="0 0 -1" fuse="true" fuseTimeout:"1500" geometry.thetaLength="0" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: cyan; shader: flat">
-            </a-cursor>
+        <a-camera position="0 2.2 4" target-indicator="target: #alterContinueLink;">
+
+            <a-entity cursor position="0 0 -1" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="false" fuseTimeout:"2000" scale="0.04 0.04 0.04" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat">
+            </a-entity>
+
+            <!-- <a-cursor position="0 0 -2" geometry="primitive: circle;" scale="0.2 0.2 0.2" fuse="false" material="color: white; shader: flat"></a-cursor> -->
+            
             <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onclick="startExp()"></a-image>
+
         </a-camera>
 
 
