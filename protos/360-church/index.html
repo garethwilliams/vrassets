@@ -26,6 +26,7 @@
 
             <!-- marker -->
             <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/marker.png">
+            <img id="markerImage" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/markerO.png">
 
             <!-- sound -->
             <audio id="ambient" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/sound/ambient.mp3"></audio>
@@ -189,14 +190,13 @@
 
             </a-entity>
 
-            <a-entity geometry="primitive: circle; radius: 1" material="color: #6B3670; shader: flat"></a-entity>
-
-            <a-circle color="#CCC" radius="20"></a-circle>
-
-
             <!-- <a-cursor position="0 0 -2" geometry="primitive: circle;" scale="0.2 0.2 0.2" fuse="false" material="color: white; shader: flat"></a-cursor> -->
             
             <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onclick="startExp()"></a-image>
+
+            <!-- <a-image id="markerCentre" src="#markerImage" height="0.1" width="0.1" position="0 0 -1" rotation="0 0 0" visible="true"></a-image> -->
+
+            
 
         </a-camera>
 
