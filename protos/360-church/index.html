@@ -5,10 +5,11 @@
     <title>NT Church proto</title>
     <meta name="description" content="A-Frame NT Proto">
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
-    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
+    <script src="https://rawgit.com/gmarty/aframe-ui-components/master/dist/aframe-ui-components.min.js"></script>
   </head>
   <body>
     <a-scene>
@@ -48,7 +49,7 @@
 
         <!-- holding scene -->
         <a-entity class="scene" id="holdingScene" visible="true">
-            <a-sky id="holding360" radius="10" src="#holding" rotation="0 88 -8.48"></a-sky>
+            <a-sky id="holding360" radius="10" src="#holding" rotation="0 88 -8.48" ></a-sky>
         </a-entity>
         <!-- #holding scene -->
 
@@ -151,18 +152,22 @@
             }
         </script>
 
-        <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="false"></a-image>
+        <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -0 -4.00" rotation="0 0 0" onclick="jumpBoat()" visible="false" data-interactive="true"></a-image>
+
         <a-image id="aisleContinueLink" src="#aisleContinue" height="3.50" width="2.10" position="0 0 8" rotation="0 180 0" onclick="jumpMain()" visible="false"></a-image>
 
-
+<!-- 
         <a-entity position="0 2.2 4">
-            <a-entity camera look-controls wasd-controls>
+            <a-entity camera look-controls wasd-controls >
+                <a-cursor fuse="false" cursor-feedback material="color: cyan; shader: flat">
+                </a-cursor>
+
                 <a-entity position="0 0 -3"
                 scale="0.4 0.4 0.4"
                 geometry="primitive: ring; radiusOuter: 0.30;
                           radiusInner: 0.20;"
                 material="color: cyan; shader: flat"
-                cursor="maxDistance: 30; fuse: false; fuseTimeout: 1000" >
+                cursor="maxDistance: 30; fuse: false;" >
                     <a-animation begin="click" easing="ease-in" attribute="scale"
              fill="backwards" from="0.1 0.1 0.1" to="0.4 0.4 0.4" dur="150">
                     </a-animation>
@@ -170,9 +175,17 @@
              fill="forwards" from="0.4 0.4 0.4" to="0.1 0.1 0.1" dur="1500">
                     </a-animation>
                 </a-entity>
-                <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" onclick="startExp()" visible="true"></a-image>
+
+                <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onclick="startExp()"></a-image>
             </a-entity>
-        </a-entity>
+        </a-entity> -->
+
+        <a-camera target-indicator="target: #alterContinueLink;">
+            <a-cursor position="0 0 -1" scale="0.8 0.8 0.8" fuse="false" material="color: red; shader: flat"></a-cursor>
+            <a-cursor position="0 0 -1" fuse="true" fuseTimeout:"1500" geometry.thetaLength="0" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: cyan; shader: flat">
+            </a-cursor>
+            <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onclick="startExp()"></a-image>
+        </a-camera>
 
 
 
