@@ -36,8 +36,8 @@
             <img id="aisleContinue" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/move-aisle.png">
             <img id="returnMiddle" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/returnMiddle.png">
 
-            <img id="sailingMast" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sailingMast.png">
-            <img id="porthole" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/porthole.png">
+            <img id="altarPanel" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/alter-info.jpg">
+            <img id="organPanel" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/organ-info.jpg">
             <img id="sail" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360test/images/sail.png">
 
             <!-- mixins -->
@@ -71,20 +71,22 @@
         </a-entity>
 
             <a-entity>
-                <a-image id="mrkOneInfo" src="#sailingMast" height="1" width="1" position="-5.17 0.53 -6.33" rotation="2 25 0" scale="5 5 5" onclick="" visible="false">
+                <a-image id="mrkOneInfo" src="#altarPanel" height="1" width="1" position="-3 1 -5" rotation="0 0 0" scale="5 5 5" onclick="" visible="false">
                 </a-image>
             </a-entity>
 
-        <!-- marker one -->
+        <!-- marker two -->
         <a-entity onclick="openMrkTwo()">
-            <a-image id="markerTwo" src="#marker" height="1" width="1" position="3.5 0 -8" rotation="2 5 0" onclick="" visible="true">
-            </a-image>
-        </a-entity>
-        <a-entity>
-            <a-image id="mrkTwoInfo" src="#porthole" height="1" width="1" position="5.17 3.00 -5.28" rotation="2 -32.84 0" scale="5 5 5" onclick="" visible="false">
+            <a-image id="markerTwo" src="#marker" height="1.7" width="2" position="5 3 3" rotation="0 60 0" onclick="" visible="true">
             </a-image>
         </a-entity>
 
+        <a-entity>
+            <a-image id="mrkTwoInfo" src="#organPanel" height="1" width="1" position="5 0 3" rotation="2 -80 0" scale="5 5 5" onclick="" visible="false">
+            </a-image>
+        </a-entity>
+
+        <!-- marker three -->
         <a-entity onclick="openMrkThree()">
             <a-image id="markerThree" src="#marker" height="1" width="1" position="5.74 7 -0.5" rotation="2 -60 0" onclick="" visible="true">
             </a-image>
@@ -94,7 +96,7 @@
             </a-image>
         </a-entity>
 
-<!--             <a-image id="markerTwo" src="#marker" height="1" width="1" position="3.5 0 -8" rotation="2 5 0" onclick="" visible="true"></a-image>
+<!--        <a-image id="markerTwo" src="#marker" height="1" width="1" position="3.5 0 -8" rotation="2 5 0" onclick="" visible="true"></a-image>
             <a-image id="markerThree" src="#marker" height="1" width="1" position="5.74 7 -0.5" rotation="2 -60 0" onclick="" visible="true"></a-image> -->
 
         </a-entity>
