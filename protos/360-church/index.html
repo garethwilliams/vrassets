@@ -65,7 +65,7 @@
 
         <!-- marker one -->
         <a-entity onclick="openMrkOne()">
-            <a-image id="markerOne" src="#marker" height="1.7" width="2" position="1 1 -9" rotation="0 0 0" onclick="" visible="true">
+            <a-image id="markerOne" src="#marker" height="1.7" width="2" position="1 1 -9" rotation="0 0 0" onclick="" visible="true" data-interactive="true">
             </a-image>
             <a-animation attribute="scale" from="0" to="1" fill="forwards" begin="10000"></a-animation>
         </a-entity>
@@ -77,7 +77,7 @@
 
         <!-- marker two -->
         <a-entity onclick="openMrkTwo()">
-            <a-image id="markerTwo" src="#marker" height="1.7" width="2" position="5 3 3" rotation="0 60 0" onclick="" visible="true">
+            <a-image id="markerTwo" src="#marker" height="1.7" width="2" position="5 3 3" rotation="0 60 0" onclick="" visible="true" data-interactive="true">
             </a-image>
         </a-entity>
 
@@ -103,7 +103,6 @@
 
 
         <script type="text/javascript">
-
             function startExp() {
                 document.getElementById('holdingScene').setAttribute('visible', 'false')
                 document.getElementById('mainScene').setAttribute('visible', 'true')
@@ -111,7 +110,6 @@
                 document.getElementById('alterContinueLink').setAttribute('visible', 'true')
                 document.getElementById('returnMiddleLink').setAttribute('visible', 'false')
             }
-
             function jumpholding() {
                 document.getElementById('holdingScene').setAttribute('visible', 'true')
                 document.getElementById('mainScene').setAttribute('visible', 'false')
@@ -119,7 +117,6 @@
                 document.getElementById('alterContinueLink').setAttribute('visible', 'false')
                 document.getElementById('returnMiddleLink').setAttribute('visible', 'false')
             }
-
             function jumpBoat() {
                 document.getElementById('mainScene').setAttribute('visible', 'false')
                 document.getElementById('firstScene').setAttribute('visible', 'true')
@@ -127,7 +124,6 @@
                 document.getElementById('returnMiddleLink').setAttribute('visible', 'true')
                 // document.querySelector('#markerOne').emit('mrkOneIn')
             }
-
             function jumpMain() {
                 document.getElementById('mainScene').setAttribute('visible', 'true')
                 document.getElementById('firstScene').setAttribute('visible', 'false')
@@ -137,25 +133,21 @@
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
             }
-
             function openMrkOne() {
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'true')
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
             }
-
             function openMrkTwo() {
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'true')
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
             }
-
             function openMrkThree() {
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'true')
             }
-
         </script>
 
         <a-image id="alterContinueLink" src="#alterContinue" height="3.50" width="2.10" position="0 -1.9 -8.5" rotation="0 0 0" onclick="jumpBoat()" visible="false" data-interactive="true"></a-image>
@@ -167,7 +159,6 @@
             <a-entity camera look-controls wasd-controls >
                 <a-cursor fuse="false" cursor-feedback material="color: cyan; shader: flat">
                 </a-cursor>
-
                 <a-entity position="0 0 -3"
                 scale="0.4 0.4 0.4"
                 geometry="primitive: ring; radiusOuter: 0.30;
@@ -181,23 +172,23 @@
              fill="forwards" from="0.4 0.4 0.4" to="0.1 0.1 0.1" dur="1500">
                     </a-animation>
                 </a-entity>
-
                 <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onclick="startExp()"></a-image>
             </a-entity>
         </a-entity> -->
 
         <a-camera position="0 2.2 4">
 
-            <a-entity cursor="fuse:true; fuseTimeout:2000;" position="0 0 -1" geometry="primitive: ring; thetaStart:0; thetaLength:0;" scale="0.04 0.04 0.04" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat">
-            </a-entity>
+    <!--         <a-entity cursor="fuse:true; fuseTimeout:2000;" position="0 0 -1" geometry="primitive: ring; thetaStart:0; thetaLength:0;" scale="0.04 0.04 0.04" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat">
+            </a-entity> -->
+<!-- 
+            <a-entity cursor="fuse:true; fuseTimeout:2000;" position="0 0 -1" geometry="primitive: circle;" radius="0.1" cursor-feedback="dur:2000;" material="color: #6B3670; shader: flat">
+            </a-entity> -->
 
-            <!-- <a-cursor position="0 0 -2" geometry="primitive: circle;" scale="0.2 0.2 0.2" fuse="false" material="color: white; shader: flat"></a-cursor> -->
+   <!--          <a-cursor position="0 0 -2" geometry="primitive: circle;" scale="0.2 0.2 0.2" fuse="false" material="color: white; shader: flat"></a-cursor> -->
+
+   <a-cursor cursor="fuse:true; fuseTimeout:2000;" cursor-feedback="dur:2000;"></a-cursor>
 
             <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onclick="startExp()" sound="src: #ambient; loop: true; on: click"></a-image>
-
-         <!--    <a-image id="markerCentre" src="#markerImage" height="0.1" width="0.1" position="0 0 -6" rotation="0 0 0" visible="true"></a-image> -->
-
-
 
         </a-camera>
 
