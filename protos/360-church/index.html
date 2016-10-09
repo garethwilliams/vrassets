@@ -180,7 +180,7 @@
 
     <!--         <a-entity cursor="fuse:true; fuseTimeout:2000;" position="0 0 -1" geometry="primitive: ring; thetaStart:0; thetaLength:0;" scale="0.04 0.04 0.04" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat">
             </a-entity> -->
-<!-- 
+<!--
             <a-entity cursor="fuse:true; fuseTimeout:2000;" position="0 0 -1" geometry="primitive: circle;" radius="0.1" cursor-feedback="dur:2000;" material="color: #6B3670; shader: flat">
             </a-entity> -->
 
@@ -188,7 +188,7 @@
 
    <a-cursor cursor="fuse:true; fuseTimeout:2000;" cursor-feedback="dur:2000;"></a-cursor>
 
-            <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onclick="startExp()" sound="src: #ambient; loop: true; on: click"></a-image>
+            <a-image id="startButtonLink" src="#startButton" height="2.6" width="3" position="0 -0 -6" rotation="0 0 0" visible="true" onmousedown="startExp()" sound="src: #ambient; loop: true; on: mousedown"></a-image>
 
         </a-camera>
 
