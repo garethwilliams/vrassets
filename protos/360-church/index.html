@@ -44,6 +44,16 @@
             <a-mixin id="areaSpace" begin="fusing" easing="ease-in" attribute="scale"
              fill="forwards" from="1 1 1" to="1.2 1.2 1.2" dur="200"></a-mixin>
 
+            <script id="marker-link" type="text/nunjucks">
+               <a-plane class="link" height="1.7" width="2"
+                 material="transparent: true; src: #marker"
+                 event-set__1="_event: mousedown; scale: 1 1 1"
+                 event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+                 event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+                 event-set__4="_event: mouseleave; scale: 1 1 1">
+               </a-plane>
+            </script>
+
         </a-assets>
 
         <!-- sound -->
@@ -64,22 +74,21 @@
             <a-sky id="first360" radius="10" src="#firstArea" rotation="0 270 0"></a-sky>
 
         <!-- marker one -->
-        <a-entity onclick="openMrkOne()">
-            <a-image id="markerOne" src="#marker" height="1.7" width="2" position="1 1 -9" rotation="0 0 0" onclick="" visible="true" data-interactive="true">
-            </a-image>
-            <a-animation attribute="scale" from="0" to="1" fill="forwards" begin="10000"></a-animation>
+        <a-entity id="markerOne" template="src: #marker-link" onclick="openMrkOne()" position="1 1 -9" rotation="0 0 0" onclick="" visible="true" data-interactive="true">
         </a-entity>
 
-            <a-entity>
-                <a-image id="mrkOneInfo" src="#altarPanel" height="1" width="1" position="-3 0.13 -8" rotation="0 6 0" scale="5 5 5" onclick="" visible="false">
-                </a-image>
-            </a-entity>
+        <a-entity>
+            <a-image id="mrkOneInfo" src="#altarPanel" height="1" width="1" position="-3 0.13 -8" rotation="0 6 0" scale="5 5 5" onclick="" visible="false">
+            </a-image>
+        </a-entity>
 
         <!-- marker two -->
-        <a-entity onclick="openMrkTwo()">
+        <a-entity id="markerTwo" template="src: #marker-link" onclick="openMrkTwo()" position="5.47 0.81 3.28" rotation="0 -120 0" onclick="" visible="true" data-interactive="true">
+        </a-entity>
+        <!-- <a-entity onclick="openMrkTwo()">
             <a-image id="markerTwo" src="#marker" height="1.7" width="2" position="5.47 0.81 3.28" rotation="0 50 0" onclick="" visible="true" data-interactive="true">
             </a-image>
-        </a-entity>
+        </a-entity> -->
 
         <a-entity>
             <a-image id="mrkTwoInfo" src="#organPanel" height="1" width="1" position="3.4 -0.45 6" rotation="0 -152 0" scale="5 5 5" onclick="" visible="false">
