@@ -10,10 +10,10 @@
      <a-scene>
         <a-assets>
           <video id="video" src="https://garethwilliams.github.io/vrassets/protos/ntvideos/assets/clandonpark.mp4"
-               autoplay loop crossorigin></video>
+                loop crossorigin></video>
         </a-assets>
 
-      <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
+      <a-videosphere src="#video" rotation="0 180 0" onclick="video.play"></a-videosphere>
        </a-scene>
   </body>
 </html>
