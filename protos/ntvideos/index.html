@@ -7,10 +7,13 @@
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
   </head>
   <body>
- <video id="video" src="https://garethwilliams.github.io/vrassets/protos/ntvideos/assets/clandonpark.mp4"
+     <a-scene>
+        <a-assets>
+          <video id="video" src="https://garethwilliams.github.io/vrassets/protos/ntvideos/assets/clandonpark.mp4"
                autoplay loop crossorigin></video>
-      </a-assets>
+        </a-assets>
 
       <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
+       </a-scene>
   </body>
 </html>
