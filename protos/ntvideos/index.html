@@ -8,12 +8,31 @@
   </head>
   <body>
      <a-scene>
+
+      <script type="text/javascript">
+           
+
+            function vidPlay() {
+                   var video = document.getElementById("vidwrap");
+                //   var button = document.getElementById("play");
+                   if (video.paused) {
+                      video.play();
+                 //     button.textContent = "||";
+                   } else {
+                      video.pause();
+                 //     button.textContent = ">";
+                   }
+                }
+
+      </script>
+
+
         <a-assets>
           <video id="video" src="https://garethwilliams.github.io/vrassets/protos/ntvideos/assets/clandonpark.mp4"
-                loop crossorigin></video>
+               autoplay="false" loop crossorigin></video>
         </a-assets>
 
-      <a-videosphere src="#video" rotation="0 180 0" onclick="video.play"></a-videosphere>
+      <a-videosphere id="vidwrap" src="#video" rotation="0 180 0" onclick="vidPlay()"></a-videosphere>
        </a-scene>
   </body>
 </html>
