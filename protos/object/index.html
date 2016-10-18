@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! - A-Frame</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+  </head>
+  <body>
+ <a-scene>
+  <a-assets>
+    <a-asset-item id="crate-obj" src="assets/building.obj"></a-asset-item>
+    <a-asset-item id="crate-mtl" src="assets/building.mtl"></a-asset-item>
+  </a-assets>
+  <!-- Using the asset management system. -->
+  <a-obj-model src="#crate-obj" mtl="#crate-mtl"></a-obj-model>
+</a-scene>
+
+  </body>
+</html>
