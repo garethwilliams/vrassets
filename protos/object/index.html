@@ -5,16 +5,23 @@
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+     <script src="dist/aframe-obj-loader-component.js"></script> 
   </head>
   <body>
- <a-scene>
-  <a-assets>
-    <a-asset-item id="crate-obj" src="assets/building.obj"></a-asset-item>
-    <a-asset-item id="crate-mtl" src="assets/building.mtl"></a-asset-item>
-  </a-assets>
-  <!-- Using the asset management system. -->
-  <a-obj-model src="#crate-obj" mtl="#crate-mtl"></a-obj-model>
-</a-scene>
+    <a-scene>
+
+      <a-entity position="5 1 0"
+       obj-loader="src: url(assets/building.obj);
+                                  mtl: url(assets/building.mtl);">
+      </a-entity>
+
+      <a-entity camera look-controls wasd-controls></a-entity>
+
+      <a-sky color="#ECECEC"></a-sky>
+
+      <a-plane rotation="90 0 0" height="1000" width="1000" color="#FEFEFE"></a-plane>
+
+    </a-scene>
 
   </body>
 </html>
