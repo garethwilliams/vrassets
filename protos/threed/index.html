@@ -11,11 +11,14 @@ n<!DOCTYPE html>
     <a-scene>
 
       <a-assets>
-        <img id="threeD" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/360-church/images/***.jpg">
+        <img id="eyeRight" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threed/assets/right.jpg">
+        <img id="eyeLEft" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threed/assets/left.jpg">
       </a-assets>
 
 
-      <a-plane  src="#threeD" width="200" height="100" stereo="eye:right" rotation="-90 0 0"></a-plane>
+      <a-plane  src="#eyeRight" width="300" height="200" stereo="eye:right" rotation="-90 0 0"></a-plane>
+
+      <a-plane  src="#eyeLeft" width="300" height="200" stereo="eye:right" rotation="-90 0 0"></a-plane>
 
 
     </a-scene>
