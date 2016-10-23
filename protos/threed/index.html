@@ -17,9 +17,13 @@
 
       <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
 
-      <a-plane  src="#threeRight" width="300" height="200" stereo="eye:right" rotation="-90 0 0"></a-plane>
+      <a-image src="#threeLeft" width="300" height="200" stereo="eye:left;"></a-image>
 
-      <a-plane  src="#threeLeft" width="300" height="200" stereo="eye:left" rotation="-90 0 0"></a-plane>
+      <a-image src="#threeRight" width="300" height="200" stereo="eye:right;"></a-image>
+
+      <!-- <a-plane  src="#threeRight" width="300" height="200" stereo="eye:right" rotation="-90 0 0"></a-plane>
+
+      <a-plane  src="#threeLeft" width="300" height="200" stereo="eye:left" rotation="-90 0 0"></a-plane> -->
 
 
     </a-scene>
