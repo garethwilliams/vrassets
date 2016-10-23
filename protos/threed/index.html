@@ -5,7 +5,8 @@
     <title>threeD</title>
     <meta name="description" content="Hello, World! • A-Frame">
     <script src="https://aframe.io/releases/latest/aframe.js"></script>
-     <script src="aframe-stereo-component.js.min.js"></script>
+     <script src="scripts/aframe-stereo-component.js"></script>
+     <script src="scripts/main.js"></script>
   </head>
   <body>
     <a-scene>
@@ -17,13 +18,13 @@
 
       <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
 
-      <a-image src="#threeLeft" width="300" height="200" stereo="eye:left;"></a-image>
+<!--       <a-image src="#threeLeft" width="300" height="200" stereo="eye:left;"></a-image>
 
-      <a-image src="#threeRight" width="300" height="200" stereo="eye:right;"></a-image>
+      <a-image src="#threeRight" width="300" height="200" stereo="eye:right;"></a-image> -->
 
-      <!-- <a-plane  src="#threeRight" width="300" height="200" stereo="eye:right" rotation="-90 0 0"></a-plane>
+      <a-plane  src="#threeRight" width="300" height="200" stereo="eye:right" rotation="-90 0 0"></a-plane>
 
-      <a-plane  src="#threeLeft" width="300" height="200" stereo="eye:left" rotation="-90 0 0"></a-plane> -->
+      <a-plane  src="#threeLeft" width="300" height="200" stereo="eye:left" rotation="-90 0 0"></a-plane>
 
 
     </a-scene>
