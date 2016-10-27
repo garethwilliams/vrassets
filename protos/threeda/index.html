@@ -11,8 +11,8 @@
     <a-scene>
 
       <a-assets>
-        <img id="threeRight" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threeda/assets/right.jpg">
-        <img id="threeLeft" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threeda/assets/left.jpg">
+        <img id="threeRight" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threeda/assets/rightFull.jpg">
+        <img id="threeLeft" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threeda/assets/leftFull.jpg">
       </a-assets>
 
       <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
@@ -21,9 +21,13 @@
 
       <a-image src="#threeRight" width="300" height="200" stereo="eye:right;"></a-image> -->
 
+      <a-sky src="#rightfull" stereo="eye:right" ></a-sky>
+
+      <a-sky src="#leftfull" stereo="eye:left" ></a-sky>
+<!-- 
       <a-plane  src="#threeRight" width="500" height="250" stereo="eye:right" rotation="0 0 0" position="0 0 -350"></a-plane>
 
-      <a-plane  src="#threeLeft" width="500" height="250" stereo="eye:left" rotation="0 0 0" position="0 0 -350"></a-plane>
+      <a-plane  src="#threeLeft" width="500" height="250" stereo="eye:left" rotation="0 0 0" position="0 0 -350"></a-plane> -->
 
 
     </a-scene>
