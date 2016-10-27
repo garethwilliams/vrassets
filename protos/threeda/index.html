@@ -20,10 +20,15 @@
 <!--       <a-image src="#threeLeft" width="300" height="200" stereo="eye:left;"></a-image>
 
       <a-image src="#threeRight" width="300" height="200" stereo="eye:right;"></a-image> -->
-
+<!-- 
       <a-sky src="#rightfull" stereo="eye:right" ></a-sky>
 
-      <a-sky src="#leftfull" stereo="eye:left" ></a-sky>
+      <a-sky src="#leftfull" stereo="eye:left" ></a-sky> -->
+
+       <a-entity class="scene" id="mainScene" visible="true">
+            <a-sky id="right360" radius="10" stereo="eye:right" src="#rightfull" rotation="0 88 -8.48"></a-sky>
+            <a-sky id="left360" radius="10" stereo="eye:left" src="#leftfull" rotation="0 88 -8.48"></a-sky>
+        </a-entity>
 <!-- 
       <a-plane  src="#threeRight" width="500" height="250" stereo="eye:right" rotation="0 0 0" position="0 0 -350"></a-plane>
 
