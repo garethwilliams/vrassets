@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>threeD</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+     <script src="scripts/aframe-stereo-component.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+      <a-assets>
+        <img id="rightfull" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threeda/assets/ent_right.jpg">
+        <img id="leftfull" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/threeda/assets/ent_left.jpg">
+      </a-assets>
+
+      <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
+
+<!--       <a-image src="#threeLeft" width="300" height="200" stereo="eye:left;"></a-image>
+
+      <a-image src="#threeRight" width="300" height="200" stereo="eye:right;"></a-image> -->
+<!-- 
+      <a-sky src="#rightfull" stereo="eye:right" ></a-sky>
+
+      <a-sky src="#leftfull" stereo="eye:left" ></a-sky> -->
+
+       <a-entity class="scene" id="mainScene" visible="true">
+            <a-sky id="right360" radius="10" stereo="eye:right" src="#rightfull" rotation="0 88 -8.48"></a-sky>
+            <a-sky id="left360" radius="10" stereo="eye:left" src="#leftfull" rotation="0 88 -8.48"></a-sky>
+        </a-entity>
+<!-- 
+      <a-plane  src="#threeRight" width="500" height="250" stereo="eye:right" rotation="0 0 0" position="0 0 -350"></a-plane>
+
+      <a-plane  src="#threeLeft" width="500" height="250" stereo="eye:left" rotation="0 0 0" position="0 0 -350"></a-plane> -->
+
+
+    </a-scene>
+  </body>
+</html>
