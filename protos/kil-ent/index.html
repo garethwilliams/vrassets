@@ -15,7 +15,7 @@
         <img id="leftfull" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/kil-ent/assets/ent_left.jpg">
       </a-assets>
 
-      <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
+      <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:right;"></a-camera>
 
 <!--       <a-image src="#threeLeft" width="300" height="200" stereo="eye:left;"></a-image>
 
@@ -26,7 +26,7 @@
       <a-sky src="#leftfull" stereo="eye:left" ></a-sky> -->
 
        <a-entity class="scene" id="mainScene" visible="true">
-            <a-sky id="right360" radius="10" stereo="eye:right" src="#rightfull" rotation="0 88 -8.48"></a-sky>
+            <a-sky id="right360" radius="10" stereo="eye:right" src="#rightfull" rotation="30 88 -8.48"></a-sky>
             <a-sky id="left360" radius="10" stereo="eye:left" src="#leftfull" rotation="0 88 -8.48"></a-sky>
         </a-entity>
 <!-- 
