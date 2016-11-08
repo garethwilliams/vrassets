@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>threeD</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+     <script src="scripts/aframe-stereo-component.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+      <a-assets>
+        <img id="panRight" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/tdsphere/assets/panright.jpg">
+        <img id="panLeft" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/tdsphere/assets/panleft.jpg">
+      </a-assets>
+
+      <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
+
+<!--       <a-image src="#threeLeft" width="300" height="200" stereo="eye:left;"></a-image>
+
+      <a-image src="#threeRight" width="300" height="200" stereo="eye:right;"></a-image> -->
+
+      <a-sky src="#panRight" stereo="eye:right"></a-sky>
+
+      <a-sky src="#panLeft" stereo="eye:left"></a-sky>
+
+<!--       <a-plane  src="#threeRight" width="300" height="200" stereo="eye:right" rotation="0 0 0" position="0 0 -200"></a-plane>
+
+      <a-plane  src="#threeLeft" width="300" height="200" stereo="eye:left" rotation="0 0 0" position="0 0 -200"></a-plane> -->
+
+
+    </a-scene>
+  </body>
+</html>
