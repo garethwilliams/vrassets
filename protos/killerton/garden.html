@@ -17,10 +17,11 @@
 
       <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
 
-      <a-sky src="#gardenRight" stereo="eye:right"></a-sky>
+      <a-curvedimage src="#gardenRight" stereo="eye:right" height="25.0" radius="10" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8"></a-curvedimage>
 
-      <a-sky src="#gardenLeft" stereo="eye:left"></a-sky>
-
+                 <a-curvedimage src="#gardenLeft" stereo="eye:left" height="25.0" radius="10" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8"></a-curvedimage>
 
     </a-scene>
   </body>
