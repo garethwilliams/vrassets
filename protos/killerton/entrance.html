@@ -12,7 +12,8 @@
 
       <a-assets>
         <!-- panoramas -->
-        <img id="entrance" crossorigin="anonymous" src="/assets/ent_right.jpg">
+        <img id="entranceRight" crossorigin="anonymous" src="/assets/entrance/left-ent.jpg">
+        <img id="entranceLeft" crossorigin="anonymous" src="/assets/entrance/right-ent.jpg">
 
         <!-- assets -->
         <img id="map" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/killerton/assets/entrance/mapLrg.png">
@@ -22,7 +23,8 @@
       <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
 
       <a-entity class="scene" id="mainScene" visible="true">
-        <a-sky id="entrancePan" radius="40" src="#entrance" rotation="0 320 0"></a-sky>
+        <a-sky id="entrancePan" radius="40" src="#entranceRight" stereo="eye:right" rotation="0 0 0"></a-sky>
+        <a-sky id="entrancePan" radius="40" src="#entranceLeft" stereo="eye:left" rotation="0 0 0"></a-sky>
       </a-entity>
 
       <a-plane src="#map" width="800" height="548" rotation="-65 180 0" position="0 -10 26" scale="0.04 0.04 0.04" transparent="true"></a-plane>
