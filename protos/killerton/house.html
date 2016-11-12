@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <style>
       html, body { background: #000; }
-      a-scene { transition: 1s opacity ease-in-out, 1s visibility ease-in-out; }
+      a-scene { transition: 2s opacity ease-in-out, 2s visibility ease-in-out; }
       a-scene:not([data-is-loaded="true"]) { opacity: 0; pointer-events: none; transition: none; visibility: visible; }
       a-scene[data-is-loaded="true"] { opacity: 1; pointer-events: auto; visibility: visible; }
     </style>
-    <script src="sw-load.js" data-service-worker="sw.js" data-service-worker-scope="./"></script>
+    <!-- <script src="sw-load.js" data-service-worker="sw.js" data-service-worker-scope="./"></script> -->
     // <script>
     //   AFRAME.registerComponent('auto-enter-vr',init: function () {
     //     this.el.sceneEl.enterVR();
@@ -21,9 +21,11 @@
     <link rel="preload" href="garden.html">
     <link rel="prefetch" href="house.html">
     <link rel="prefetch" href="garden.html">
-    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
      <script src="scripts/aframe-stereo-component.js"></script>
      <script src="js/aframe-hyperlink.js"></script>
+     <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
+     <script src="https://rawgit.com/gmarty/aframe-ui-components/master/dist/aframe-ui-components.min.js"></script>
   </head>
   <body>
     <a-scene>
@@ -33,25 +35,54 @@
         <img id="house" crossorigin="anonymous" src="/assets/house/house.jpg">
 
         <!-- assets -->
-        <img id="map" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/killerton/assets/entrance/mapLrg.png">
-        <img id="marker" crossorigin="anonymous" src="https://garethwilliams.github.io/vrassets/protos/killerton/assets/global/marker.png">
 
-        <img id="aclandfam" crossorigin="anonymous" src="/assets/entrance/aclandfam.png">
+        <!-- pull out images -->
+        <img id="watercolour" crossorigin="anonymous" src="/assets/house/watercolour.jpg">
+        <img id="lydiaPainting" crossorigin="anonymous" src="/assets/house/lydiaPainting.jpg">
+        <img id="organOld" crossorigin="anonymous" src="/assets/house/organOld.jpg">
+        <img id="thomasPainting" crossorigin="anonymous" src="/assets/house/thomasPainting.jpg">
       </a-assets>
 
-      <a-camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-camera>
 
-      <a-entity class="scene" id="mainScene" visible="true">
-        <a-sky id="housePan" radius="40" src="#house" rotation="0 320 0"></a-sky>
+<!--       <a-camera position="0 0 10">
+        <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:100;" fuse="false" cursor-feedback="dur:1000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
+      </a-camera> -->
+
+      <a-camera position="0 0 10">
+        <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:100;" fuse="true" fuseTimeout="2000" material="color: #6B3670; shader: flat"></a-cursor>
+      </a-camera>
+
+      <a-sound src="src: url(assets/audio/killertonOrgan.mp3)" autoplay="true" position="0 2 5" loop="true"></a-sound>
+
+      <!-- 360 house -->
+      <a-entity class="scene" id="mainScene" visible="true" data-interactive="true" onclick="hideAll()">
+        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0"></a-sky>
       </a-entity>
 
-      <a-plane src="#map" width="800" height="548" rotation="-40.74 180 0" position="0 -5.76 32.53" scale="0.04 0.04 0.04" transparent="true"></a-plane>
+      <!-- pull out images -->
+      <a-plane src="#lydiaPainting" width="354" height="450" rotation="-40.74 180 0" position="438 -5.76 1161" scale="1 1 1" transparent="true"></a-plane>
 
-      <a-plane src="#marker" width="74" height="112" rotation="0 180 0" position="2.84 -8.35 28.23" scale="0.02 0.02 0.02" transparent="true"></a-plane>
+      <a-plane src="#organOld" width="450" height="274" rotation="0 180 0" position="-400 80 885" scale="1 1 1" transparent="true"></a-plane>
 
-      <a-plane src="#aclandfam" width="822" height="720" rotation="0 0 0" position="0 0 -37" scale="0.02 0.02 0.02" transparent="true"></a-plane>
+      <a-plane src="#watercolour" width="450" height="338" rotation="0 180 0" position="816 -8.35 600" scale="1 1 1" transparent="true"></a-plane>
+
+      <a-entity height="3000" width="1500" id="tp-trigger" onclick="showThomas()">
+      <a-plane color="#CCC" opacity="0.2" height="3000" width="1500" position="-1356.98 1011.90 -1077.08" rotation="0 45 0" ></a-plane>
+      </a-entity>
+
+      <a-plane id="tp-situ" src="#thomasPainting" width="245" height="450" rotation="0 45 0" position="-983 253 -803" scale="2 2 2" transparent="true" visible="false"></a-plane>
 
       
+             <script type="text/javascript">
+            function showThomas() {
+                document.getElementById('tp-situ').setAttribute('visible', 'true')
+            }
+
+            function hideAll() {
+                document.getElementById('tp-situ').setAttribute('visible', 'false')
+            }
+
+        </script>
 
 
 <!-- 
