@@ -9,12 +9,12 @@
       a-scene[data-is-loaded="true"] { opacity: 1; pointer-events: auto; visibility: visible; }
     </style>
     <script src="sw-load.js" data-service-worker="sw.js" data-service-worker-scope="./"></script>
-    <script>
-      AFRAME.registerComponent('auto-enter-vr',init: function () {
-        this.el.sceneEl.enterVR();
-      }
-      });
-    </script>
+    // <script>
+    //   AFRAME.registerComponent('auto-enter-vr',init: function () {
+    //     this.el.sceneEl.enterVR();
+    //   }
+    //   });
+    // </script>
     <title>National Trust - Killerton House</title>
     <meta name="description" content="National Trust - Killerton House">
     <link rel="preload" href="house.html">
@@ -26,7 +26,7 @@
      <script src="js/aframe-hyperlink.js"></script>
   </head>
   <body>
-    <a-scene auto-enter-vr>
+    <a-scene>
 
       <a-assets>
         <!-- panoramas -->
