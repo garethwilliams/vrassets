@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>NT Church proto</title>
     <meta name="description" content="A-Frame NT Proto">
-    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
     <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
@@ -146,6 +146,7 @@
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'true')
                 document.getElementById('mrkTwoInfo').setAttribute('visible', 'false')
                 document.getElementById('mrkThreeInfo').setAttribute('visible', 'false')
+                console.log ( 'open mark one' );
             }
             function openMrkTwo() {
                 document.getElementById('mrkOneInfo').setAttribute('visible', 'false')

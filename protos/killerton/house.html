@@ -24,8 +24,8 @@
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
      <script src="scripts/aframe-stereo-component.js"></script>
      <script src="js/aframe-hyperlink.js"></script>
-     <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
-     <script src="https://rawgit.com/gmarty/aframe-ui-components/master/dist/aframe-ui-components.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
+    <script src="https://rawgit.com/gmarty/aframe-ui-components/master/dist/aframe-ui-components.min.js"></script>
   </head>
   <body>
     <a-scene>
@@ -35,54 +35,117 @@
         <img id="house" crossorigin="anonymous" src="/assets/house/house.jpg">
 
         <!-- assets -->
+        <img id="target" crossorigin="anonymous" src="/assets/global/target.png">
+        <img id="targetDev" crossorigin="anonymous" src="/assets/global/targetDev.png">
 
-        <!-- pull out images -->
-        <img id="watercolour" crossorigin="anonymous" src="/assets/house/watercolour.jpg">
-        <img id="lydiaPainting" crossorigin="anonymous" src="/assets/house/lydiaPainting.jpg">
-        <img id="organOld" crossorigin="anonymous" src="/assets/house/organOld.jpg">
-        <img id="thomasPainting" crossorigin="anonymous" src="/assets/house/thomasPainting.jpg">
+        <img id="info" crossorigin="anonymous" src="/assets/global/infoPoint.png">
+        <img id="infoPurp" crossorigin="anonymous" src="/assets/global/infoPointPurp.png">
+
+        <!-- Info images -->
+        <img id="wcInfo" crossorigin="anonymous" src="/assets/house/wc-info.png">
+        <img id="tpInfo" crossorigin="anonymous" src="/assets/house/tp-info.png">
+        <img id="ogInfo" crossorigin="anonymous" src="/assets/house/og-info.png">
+
+        <!-- Mixins -->
+        <a-mixin id="fade" attribute="material.opacity" begin="fadeIn" to="1" dur="2000"></a-mixin>
+        <a-mixin id="Outfade" attribute="material.opacity" begin="fadeOut" to="0" dur="2000"></a-mixin>
       </a-assets>
 
 
-<!--       <a-camera position="0 0 10">
-        <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:100;" fuse="false" cursor-feedback="dur:1000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
-      </a-camera> -->
 
-      <a-camera position="0 0 10">
-        <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:100;" fuse="true" fuseTimeout="2000" material="color: #6B3670; shader: flat"></a-cursor>
+      <a-camera>
+        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
       </a-camera>
 
-      <a-sound src="src: url(assets/audio/killertonOrgan.mp3)" autoplay="true" position="0 2 5" loop="true"></a-sound>
+<!--       <a-camera>
+        <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:200;" fuse="true" fuseTimeout="2000" material="color: #6B3670; shader: flat"></a-cursor>
+      </a-camera> -->
 
-      <!-- 360 house -->
-      <a-entity class="scene" id="mainScene" visible="true" data-interactive="true" onclick="hideAll()">
-        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0"></a-sky>
-      </a-entity>
+        <a-sound src="src: url(assets/audio/killertonOrgan.mp3)" autoplay="true" position="0 2 5" loop="true"></a-sound>
 
-      <!-- pull out images -->
-      <a-plane src="#lydiaPainting" width="354" height="450" rotation="-40.74 180 0" position="438 -5.76 1161" scale="1 1 1" transparent="true"></a-plane>
+        <!-- 360 house -->
+        <a-entity class="scene" id="mainScene" visible="true">
+          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0"></a-sky>
+        </a-entity>
 
-      <a-plane src="#organOld" width="450" height="274" rotation="0 180 0" position="-400 80 885" scale="1 1 1" transparent="true"></a-plane>
+     
+        <!-- Watercolour -->
+        <a-image id="wc-target" src="#target" width="800" height="1500" rotation="0 45 0" position="345 80 345" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
+        </a-image>
 
-      <a-plane src="#watercolour" width="450" height="338" rotation="0 180 0" position="816 -8.35 600" scale="1 1 1" transparent="true"></a-plane>
+        <a-image id="wc-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="323.56 -237 1072" visible="true" scale="0.5 0.5 0.5"></a-image>
 
-      <a-entity height="3000" width="1500" id="tp-trigger" onclick="showThomas()">
-      <a-plane color="#CCC" opacity="0.2" height="3000" width="1500" position="-1356.98 1011.90 -1077.08" rotation="0 45 0" ></a-plane>
-      </a-entity>
+        <a-image id="wc-situ" src="#wcInfo" width="1342" height="1298" rotation="0 230 0" position="1035 80 720" scale="0.6 0.6 0.6" transparent="true" visible="false" material="opacity: 0">
+           <a-animation mixin="fade"></a-animation>
+           <a-animation mixin="Outfade"></a-animation>
+        </a-image>
 
-      <a-plane id="tp-situ" src="#thomasPainting" width="245" height="450" rotation="0 45 0" position="-983 253 -803" scale="2 2 2" transparent="true" visible="false"></a-plane>
 
-      
-             <script type="text/javascript">
-            function showThomas() {
+        <!-- Organ Photo -->
+        <a-image id="og-target" src="#target" width="800" height="1500" rotation="0 180 0" position="-400 80 885" scale="1 1 1" onclick="showOG()" visible="true" transparent="true" data-interactive="true">
+        </a-image>
+
+        <a-image id="og-point" src="#infoPurp" width="100" height="100" rotation="0 182 0" position="-166.48 -65.22 811" visible="true" scale="0.5 0.5 0.5"></a-image>
+
+        <a-image id="og-situ" src="#ogInfo" width="1342" height="1298" rotation="0 135 0" position="-855 60 885" scale="0.6 0.6 0.6" transparent="true" visible="false" material="opacity: 0">
+           <a-animation mixin="fade"></a-animation>
+           <a-animation mixin="Outfade"></a-animation>
+        </a-image>
+
+
+        <!-- Thomas Painting -->
+        <a-image id="tp-target" src="#target" width="800" height="1500" rotation="0 45 0" position="-385.03 706 -402" scale="1 1 1" onclick="showTP()" visible="true" transparent="true" data-interactive="true">
+        </a-image>
+
+        <a-image id="tp-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="-402.85 196 -248" visible="true" scale="0.3 0.3 0.3"></a-image>
+
+        <a-image id="tp-situ" src="#tpInfo" width="1862" height="984" rotation="0 45 0" position="-315 35 -285" scale="0.2 0.2 0.2" transparent="true" visible="false" material="opacity: 0">
+           <a-animation mixin="fade"></a-animation>
+           <a-animation mixin="Outfade"></a-animation>
+        </a-image>
+
+
+
+
+          <script type="text/javascript">
+            function showTP() {
                 document.getElementById('tp-situ').setAttribute('visible', 'true')
+                document.getElementById('tp-target').setAttribute('visible', 'false')
+                document.getElementById('og-situ').setAttribute('visible', 'false')
+                document.getElementById('og-target').setAttribute('visible', 'true')
+                document.getElementById('wc-situ').setAttribute('visible', 'false')
+                document.getElementById('wc-target').setAttribute('visible', 'true')
+                document.querySelector('#tp-situ').emit('fadeIn');
+                document.querySelector('#og-situ').emit('fadeOut');
+                document.querySelector('#wc-situ').emit('fadeOut');
             }
 
-            function hideAll() {
+            function showOG() {
                 document.getElementById('tp-situ').setAttribute('visible', 'false')
+                document.getElementById('tp-target').setAttribute('visible', 'true')
+                document.getElementById('og-situ').setAttribute('visible', 'true')
+                document.getElementById('og-target').setAttribute('visible', 'false')
+                document.getElementById('wc-situ').setAttribute('visible', 'false')
+                document.getElementById('wc-target').setAttribute('visible', 'true')
+                document.querySelector('#og-situ').emit('fadeIn');
+                document.querySelector('#tp-situ').emit('fadeOut');
+                document.querySelector('#wc-situ').emit('fadeOut');
+            }
+
+            function showWC() {
+                document.getElementById('wc-situ').setAttribute('visible', 'true')
+                document.getElementById('wc-target').setAttribute('visible', 'false')
+                document.getElementById('tp-situ').setAttribute('visible', 'false')
+                document.getElementById('tp-target').setAttribute('visible', 'true')
+                document.getElementById('og-situ').setAttribute('visible', 'false')
+                document.getElementById('og-target').setAttribute('visible', 'true')
+                document.querySelector('#wc-situ').emit('fadeIn');
+                document.querySelector('#tp-situ').emit('fadeOut');
+                document.querySelector('#og-situ').emit('fadeOut');
             }
 
         </script>
+            
 
 
 <!-- 
