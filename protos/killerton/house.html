@@ -15,6 +15,9 @@
     //   }
     //   });
     // </script>
+
+   
+
     <title>National Trust - Killerton House</title>
     <meta name="description" content="National Trust - Killerton House">
     <link rel="preload" href="house.html">
@@ -29,10 +32,10 @@
   </head>
   <body>
     <a-scene>
-
       <a-assets>
         <!-- panoramas -->
         <img id="house" crossorigin="anonymous" src="/assets/house/house.jpg">
+        <img id="entrance" crossorigin="anonymous" src="/assets/ent_right.jpg">
 
         <!-- assets -->
         <img id="target" crossorigin="anonymous" src="/assets/global/target.png">
@@ -46,34 +49,42 @@
         <img id="tpInfo" crossorigin="anonymous" src="/assets/house/tp-info.png">
         <img id="ogInfo" crossorigin="anonymous" src="/assets/house/og-info.png">
 
+        <!-- Move images -->
+        <img id="moveGdn" crossorigin="anonymous" src="/assets/house/moveGdn.png">
+
         <!-- Mixins -->
         <a-mixin id="fade" attribute="material.opacity" begin="fadeIn" to="1" dur="2000"></a-mixin>
         <a-mixin id="Outfade" attribute="material.opacity" begin="fadeOut" to="0" dur="2000"></a-mixin>
       </a-assets>
 
-
-
       <a-camera>
-        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
+        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
       </a-camera>
 
 <!--       <a-camera>
         <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:200;" fuse="true" fuseTimeout="2000" material="color: #6B3670; shader: flat"></a-cursor>
       </a-camera> -->
 
-        <a-sound src="src: url(assets/audio/killertonOrgan.mp3)" autoplay="true" position="0 2 5" loop="true"></a-sound>
 
         <!-- 360 house -->
         <a-entity class="scene" id="mainScene" visible="true">
-          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0"></a-sky>
+          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true"></a-sky>
+          <a-sky id="entrancePan" radius="5000" src="#entrance" rotation="0 320 0" visible="false" material="opacity: 0">
+            <a-animation mixin="fade"></a-animation>
+          </a-sky>
         </a-entity>
 
-     
+      <a-entity id="houseScene" visible="true">
+        <!-- Audio -->
+        <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="true" position="0 2 5" loop="false" play-next-sound="#hMusic"></a-sound>
+        <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="0 2 5" loop="true"></a-sound>
+
+    
         <!-- Watercolour -->
         <a-image id="wc-target" src="#target" width="800" height="1500" rotation="0 45 0" position="345 80 345" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
-        <a-image id="wc-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="323.56 -237 1072" visible="true" scale="0.5 0.5 0.5"></a-image>
+        <a-image id="wc-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="219.97 -30.54 435.27" visible="true" scale="0.5 0.5 0.5"></a-image>
 
         <a-image id="wc-situ" src="#wcInfo" width="1342" height="1298" rotation="0 230 0" position="1035 80 720" scale="0.6 0.6 0.6" transparent="true" visible="false" material="opacity: 0">
            <a-animation mixin="fade"></a-animation>
@@ -105,9 +116,34 @@
         </a-image>
 
 
+        <!-- Move from House to Garden -->
+        <a-image id="gdn-target" src="#target" width="600" height="900" rotation="0 120 0" position="492 50 -309" scale="1 1 1" onclick="moveGDN()" visible="false" transparent="true" data-interactive="true">
+           <a-animation attribute="visible" begin="45000" to="true"></a-animation>
+        </a-image>
+
+        <a-image id="gdn-move" src="#moveGdn" width="913" height="142" rotation="0 -66 0" position="417.71 -50 -176" visible="false" scale="0.2 0.2 0.2">
+           <a-animation attribute="visible" begin="45000" to="true"></a-animation>
+        </a-image>
+
+
+ <script type="text/javascript">
+      AFRAME.registerComponent('play-next-sound', {
+        schema: {type: 'selector'},
+
+        init: function () {
+          var targetEl = this.data;
+          var soundEl = this.el;
+
+          soundEl.addEventListener('sound-ended', function () {
+            targetEl.components.sound.playSound();
+          });
+        }
+      });
+    </script>
 
 
           <script type="text/javascript">
+
             function showTP() {
                 document.getElementById('tp-situ').setAttribute('visible', 'true')
                 document.getElementById('tp-target').setAttribute('visible', 'false')
@@ -145,13 +181,18 @@
             }
 
         </script>
-            
+      </a-entity>
 
+        <script type="text/javascript">
+          function moveGDN() {
+            document.getElementById('houseScene').setAttribute('visible', 'false')
+            document.getElementById('housePan').setAttribute('visible', 'false')
+            document.getElementById('entrancePan').setAttribute('visible', 'true')
+            document.querySelector('#entrancePan').emit('fadeIn');
 
-<!-- 
-      <a-plane  src="#threeLeft" width="500" height="250" stereo="eye:left" rotation="0 0 0" position="0 0 -350"></a-plane> -->
+          }
+        </script>
 
-
-    </a-scene>
+      </a-scene>
   </body>
 </html>
