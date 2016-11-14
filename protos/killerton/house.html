@@ -38,6 +38,10 @@
         <img id="entrance" crossorigin="anonymous" src="/assets/ent_right.jpg">
         <img id="garden" crossorigin="anonymous" src="/assets/garden/gdnHse.jpg">
 
+        <!-- 3D -->
+        <img id="hseLeft" crossorigin="anonymous" src="/assets/house/3d/hse-lft.jpg">
+        <img id="hseRight" crossorigin="anonymous" src="/assets/house/3d/hse-right.jpg">
+
         <!-- assets -->
         <img id="target" crossorigin="anonymous" src="/assets/global/target.png">
         <img id="targetDev" crossorigin="anonymous" src="/assets/global/targetDev.png">
@@ -58,7 +62,7 @@
         <a-mixin id="Outfade" attribute="material.opacity" begin="fadeOut" to="0" dur="2000"></a-mixin>
       </a-assets>
 
-      <a-camera>
+      <a-camera stereocam="eye:left;">
         <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
       </a-camera>
 
@@ -69,7 +73,7 @@
 
         <!-- 360 house -->
         <a-entity class="scene" id="mainScene" visible="true">
-          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true">
+          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="false">
             <a-animation mixin="fade"></a-animation>
           </a-sky>
           <a-sky id="entrancePan" radius="5000" src="#entrance" rotation="0 320 0" visible="false" material="opacity: 0">
@@ -78,10 +82,19 @@
           <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="false" material="opacity: 0">
             <a-animation mixin="fade"></a-animation>
           </a-sky>
+
+          <a-curvedimage src="#hseRight" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8"></a-curvedimage>
+
+                 <a-curvedimage src="#hseLeft" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8"></a-curvedimage>
         </a-entity>
 
         <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="true" position="0 2 5" loop="false"></a-sound>
         <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="0 2 5" loop="true" on="playS"></a-sound>
+        <a-sound src="src: url(assets/audio/gdnSounds.mp3)" id="gSounds" autoplay="false" position="0 0 0" loop="true" on="playS"></a-sound>
+
+        
 
       <a-entity id="houseScene" visible="true">
         <!-- Audio -->
@@ -200,10 +213,11 @@
         <script type="text/javascript">
           function moveGDN() {
             document.getElementById('houseScene').setAttribute('visible', 'false')
-            document.getElementById('housePan').setAttribute('visible', 'false')
+            document.getElementById('hseRight').setAttribute('visible', 'false')
             document.getElementById('hseGdnPan').setAttribute('visible', 'true')
             document.querySelector('#hseGdnPan').emit('fadeIn');
             document.querySelector('#hMusic').components.sound.pause();
+            document.querySelector('#gSounds').emit('playS');
           }
         </script>
 
