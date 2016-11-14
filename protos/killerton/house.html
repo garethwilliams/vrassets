@@ -36,6 +36,7 @@
         <!-- panoramas -->
         <img id="house" crossorigin="anonymous" src="/assets/house/house.jpg">
         <img id="entrance" crossorigin="anonymous" src="/assets/ent_right.jpg">
+        <img id="garden" crossorigin="anonymous" src="/assets/garden/gdnHse.jpg">
 
         <!-- assets -->
         <img id="target" crossorigin="anonymous" src="/assets/global/target.png">
@@ -58,7 +59,7 @@
       </a-assets>
 
       <a-camera>
-        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:2000; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
+        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
       </a-camera>
 
 <!--       <a-camera>
@@ -68,23 +69,30 @@
 
         <!-- 360 house -->
         <a-entity class="scene" id="mainScene" visible="true">
-          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true"></a-sky>
+          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true">
+            <a-animation mixin="fade"></a-animation>
+          </a-sky>
           <a-sky id="entrancePan" radius="5000" src="#entrance" rotation="0 320 0" visible="false" material="opacity: 0">
+            <a-animation mixin="fade"></a-animation>
+          </a-sky>
+          <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="false" material="opacity: 0">
             <a-animation mixin="fade"></a-animation>
           </a-sky>
         </a-entity>
 
+        <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="true" position="0 2 5" loop="false"></a-sound>
+        <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="0 2 5" loop="true" on="playS"></a-sound>
+
       <a-entity id="houseScene" visible="true">
         <!-- Audio -->
-        <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="true" position="0 2 5" loop="false" play-next-sound="#hMusic"></a-sound>
-        <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="0 2 5" loop="true"></a-sound>
+        
 
     
         <!-- Watercolour -->
-        <a-image id="wc-target" src="#target" width="800" height="1500" rotation="0 45 0" position="345 80 345" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
+        <a-image id="wc-target" src="#target" width="500" height="1200" rotation="0 45 0" position="286 80 508" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
-        <a-image id="wc-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="219.97 -30.54 435.27" visible="true" scale="0.5 0.5 0.5"></a-image>
+        <a-image id="wc-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="228 -32 433" visible="true" scale="0.3 0.3 0.3"></a-image>
 
         <a-image id="wc-situ" src="#wcInfo" width="1342" height="1298" rotation="0 230 0" position="1035 80 720" scale="0.6 0.6 0.6" transparent="true" visible="false" material="opacity: 0">
            <a-animation mixin="fade"></a-animation>
@@ -125,7 +133,7 @@
            <a-animation attribute="visible" begin="45000" to="true"></a-animation>
         </a-image>
 
-
+<!--
  <script type="text/javascript">
       AFRAME.registerComponent('play-next-sound', {
         schema: {type: 'selector'},
@@ -140,9 +148,14 @@
         }
       });
     </script>
+  -->
 
 
           <script type="text/javascript">
+
+            document.querySelector('#hTour').addEventListener('sound-ended', function(){
+              document.querySelector('#hMusic').emit('playS');
+          });
 
             function showTP() {
                 document.getElementById('tp-situ').setAttribute('visible', 'true')
@@ -178,6 +191,7 @@
                 document.querySelector('#wc-situ').emit('fadeIn');
                 document.querySelector('#tp-situ').emit('fadeOut');
                 document.querySelector('#og-situ').emit('fadeOut');
+
             }
 
         </script>
@@ -187,9 +201,9 @@
           function moveGDN() {
             document.getElementById('houseScene').setAttribute('visible', 'false')
             document.getElementById('housePan').setAttribute('visible', 'false')
-            document.getElementById('entrancePan').setAttribute('visible', 'true')
-            document.querySelector('#entrancePan').emit('fadeIn');
-
+            document.getElementById('hseGdnPan').setAttribute('visible', 'true')
+            document.querySelector('#hseGdnPan').emit('fadeIn');
+            document.querySelector('#hMusic').components.sound.pause();
           }
         </script>
 
