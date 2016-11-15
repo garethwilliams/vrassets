@@ -51,6 +51,8 @@
         <img id="info" crossorigin="anonymous" src="/assets/global/infoPoint.png">
         <img id="infoPurp" crossorigin="anonymous" src="/assets/global/infoPointPurp.png">
 
+        <img id="backMenu" crossorigin="anonymous" src="/assets/global/backMenu.png">
+
         <!-- Info images -->
         <img id="wcInfo" crossorigin="anonymous" src="/assets/house/wc-info.png">
         <img id="tpInfo" crossorigin="anonymous" src="/assets/house/tp-info.png">
@@ -59,9 +61,16 @@
         <!-- Move images -->
         <img id="moveGdn" crossorigin="anonymous" src="/assets/house/moveGdn.png">
 
+        <!-- Welcome -->
+        <img id="floor" crossorigin="anonymous" src="assets/global/floor.jpg">
+        <img id="welcome" crossorigin="anonymous" src="assets/global/welKil.png">
+
         <!-- Mixins -->
         <a-mixin id="fade" attribute="material.opacity" begin="fadeIn" to="1" dur="2000"></a-mixin>
         <a-mixin id="Outfade" attribute="material.opacity" begin="fadeOut" to="0" dur="2000"></a-mixin>
+        <a-mixin id="trigInAni" attribute="geometry.theta-length" begin="trigIn" to="360" dur="4000"></a-mixin>
+        <a-mixin id="trigOutAni" attribute="geometry.theta-length" begin="trigOut" to="0" dur="4000"></a-mixin>
+
       </a-assets>
 
       <a-camera stereocam="eye:left;">
@@ -72,46 +81,54 @@
         <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:200;" fuse="true" fuseTimeout="2000" material="color: #6B3670; shader: flat"></a-cursor>
       </a-camera> -->
 
+        <!-- Audio -->
+        <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="false" position="0 0 0" loop="false" on="playhTour"></a-sound>
+        <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="-4 0-4" loop="true" on="playhMusic"></a-sound>
+        <a-sound src="src: url(assets/audio/gdnSounds.mp3)" id="gSounds" autoplay="false" position="0 0 0" loop="true" on="playgSounds"></a-sound>
+        <a-sound src="src: url(assets/audio/entTour.mp3)" id="eTour" autoplay="false" position="0 0 0" loop="false" on="playeTour"></a-sound>
 
-        <!-- 360 house -->
-        <a-entity class="scene" id="mainScene" visible="true">
-          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="false">
-            <a-animation mixin="fade"></a-animation>
-          </a-sky>
-          <a-sky id="entrancePan" radius="5000" src="#entrance" rotation="0 240 0" visible="true" material="opacity: 1">
-            <a-animation mixin="fade"></a-animation>
-          </a-sky>
-          <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="false" material="opacity: 0">
-            <a-animation mixin="fade"></a-animation>
-          </a-sky>
 
-          <a-curvedimage src="#hseRight" id="hse-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
-          <a-curvedimage src="#hseLeft" id="hse-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
+        <!-- WELCOME -->
+        <a-entity id="welcomeScene" visible="true" opacity="1">
 
-          <a-curvedimage src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false" ></a-curvedimage>
-          <a-curvedimage src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false" ></a-curvedimage>
+          <a-sky id="welcomePan" color="#ffffff" radius="40" rotation="0 0 0"></a-sky>
+
+          <a-plane src="#floor" width="1200" height="1200" side="front" rotation="-90 0 0" position="0 -5 0" scale="0.05 0.05 0.05" transparent="true"></a-plane>
+
+          <a-plane src="#welcome" width="666" height="134" side="front" rotation="0 0 0" position="0 3 -26" scale="0.03 0.03 0.03" transparent="true"></a-plane>
+
+          <a-light type="ambient" intensity="1" color="#fff"></a-light>
+
+          <a-image id="entrance-target" src="#targetDev" width="20" height="20" rotation="0 141 0" position="22.50 9.5 -18" scale="1 1 1" onclick="moveEnt()" visible="true" transparent="true" data-interactive="true">
+          </a-image>
 
         </a-entity>
 
-        <!-- Audio -->
-        <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="false" position="0 0 0" loop="false" on="playhTour"></a-sound>
-        <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="-7 0 -15" loop="true" on="playhMusic"></a-sound>
-        <a-sound src="src: url(assets/audio/gdnSounds.mp3)" id="gSounds" autoplay="true" position="0 0 0" loop="true" on="playgSounds"></a-sound>
-        <a-sound src="src: url(assets/audio/entTour.mp3)" id="eTour" autoplay="true" position="0 0 0" loop="false" on="playeTour"></a-sound>
 
         <!-- ENTRANCE -->
-        <a-entity id="entranceScene" visible="true"> <!-- make this false after dev -->
+        <a-entity id="entranceScene" visible="false" opacity="1"> <!-- make this false after dev -->
+
+          <a-sky id="entrancePan" radius="5000" src="#entrance" rotation="0 240 0" visible="true" material="opacity: 1"></a-sky>
+
           <a-image id="house-target" src="#target" width="400" height="650" rotation="0 75 0" position="520 0 200" scale="1 1 1" onclick="moveHse()" visible="true" transparent="true" data-interactive="true">
-        </a-image>
+          </a-image>
+          <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
+          <a-animation mixin="fade"></a-animation>
         </a-entity>
         
 
         <!-- HOUSE -->
         <a-entity id="houseScene" visible="false" opacity="1">
+        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true">
+            <a-animation mixin="fade"></a-animation>
+          </a-sky>
+          <a-curvedimage src="#hseRight" id="hse-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="true"></a-curvedimage>
+          <a-curvedimage src="#hseLeft" id="hse-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="true"></a-curvedimage>
+
+        <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
+
       
         <!-- Watercolour -->
         <a-image id="wc-target" src="#target" width="500" height="1200" rotation="0 45 0" position="286 80 508" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
@@ -143,6 +160,11 @@
 
         <a-image id="tp-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="-402.85 196 -248" visible="true" scale="0.3 0.3 0.3"></a-image>
 
+        <!-- <a-ring id="tp-timer" color="teal" rotation="0 45 0" position="-380 130 -241" radius-inner="20" theta-length="100" radius-outer="30">
+          <a-animation mixin="trigInAni"></a-animation>
+          <a-animation mixin="trigOutAni"></a-animation>
+        </a-ring> -->
+
         <a-image id="tp-situ" src="#tpInfo" width="1862" height="984" rotation="0 45 0" position="-315 35 -285" scale="0.2 0.2 0.2" transparent="true" visible="false" material="opacity: 0">
            <a-animation mixin="fade"></a-animation>
            <a-animation mixin="Outfade"></a-animation>
@@ -158,32 +180,43 @@
            <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
         </a-image>
 
-<!--
- <script type="text/javascript">
-      AFRAME.registerComponent('play-next-sound', {
-        schema: {type: 'selector'},
 
-        init: function () {
-          var targetEl = this.data;
-          var soundEl = this.el;
 
-          soundEl.addEventListener('sound-ended', function () {
-            targetEl.components.sound.playSound();
-          });
-        }
-      });
-    </script>
-  -->
+        <!-- GARDEN -->
+        <a-entity id="GardenScene" visible="false" opacity="1">
+          <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="true" material="opacity: 0">
+              <a-animation mixin="fade"></a-animation>
+          </a-sky>
+
+          <a-curvedimage src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
+          <a-curvedimage src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
+        </a-entity>
+
 
 
           <script type="text/javascript">
 
-            document.querySelector('#hTour').addEventListener('sound-ended', function(){
+            document.querySelector('#hTour').addEventListener('sound-ended', function() {
                 document.querySelector('#hMusic').emit('playhMusic');
                 document.getElementById('gdn-target').setAttribute('visible', 'true')
                 document.getElementById('gdn-move').setAttribute('visible', 'true')
             });
 
+            // document.querySelector('#tp-target').addEventListener('mouseenter', function () {
+            //   document.querySelector('#tp-timer').emit('trigIn');
+            // try onmouseenter within the DOM element!!!!
+            // });
+
+            // document.querySelector('#tp-target').mouseenter(function(){ 
+            //    document.querySelector('#tp-timer').emit('trigIn');
+            // });
+
+            // document.querySelector('#tp-target').mouseleave(function(){ 
+            //    document.querySelector('#tp-timer').emit('trigOut');
+            // });
+           
             
 
             function showTP() {
@@ -196,6 +229,7 @@
                 document.querySelector('#tp-situ').emit('fadeIn');
                 document.querySelector('#og-situ').emit('fadeOut');
                 document.querySelector('#wc-situ').emit('fadeOut');
+                document.querySelector('#tp-timer').emit('trigIn');
             }
 
             function showOG() {
@@ -228,26 +262,46 @@
 
         <script type="text/javascript">
 
-        document.querySelector('#eTour').addEventListener('sound-ended', function(){
-                document.getElementById('entranceScene').setAttribute('visible', 'true')
-            });
+        // document.querySelector('#eTour').addEventListener('sound-ended', function(){
+        //         document.getElementById('entranceScene').setAttribute('visible', 'true')
+        //     });
+
+
+        function moveMenu() {
+              document.getElementById('welcomeScene').setAttribute('visible', 'true')
+              document.getElementById('entranceScene').setAttribute('visible', 'false')
+              document.getElementById('houseScene').setAttribute('visible', 'false')
+              document.getElementById('GardenScene').setAttribute('visible', 'false')
+              document.querySelector('#eTour').components.sound.pause();
+              document.querySelector('#hTour').components.sound.pause();
+              document.querySelector('#gSounds').components.sound.pause();
+              document.querySelector('#hMusic').components.sound.pause();
+            }
+
+        function moveEnt() {
+              document.getElementById('welcomeScene').setAttribute('visible', 'false')
+              document.getElementById('entranceScene').setAttribute('visible', 'true')
+              document.getElementById('houseScene').setAttribute('visible', 'false')
+              document.getElementById('GardenScene').setAttribute('visible', 'false')
+              document.querySelector('#eTour').emit('playeTour');
+              document.querySelector('#gSounds').emit('playgSounds');
+            }
 
         function moveHse() {
+              document.getElementById('welcomeScene').setAttribute('visible', 'false')
               document.getElementById('entranceScene').setAttribute('visible', 'false')
-              document.getElementById('entrancePan').setAttribute('visible', 'false')
               document.getElementById('houseScene').setAttribute('visible', 'true')
-              document.getElementById('hse-panR').setAttribute('visible', 'true')
-              document.getElementById('hse-panL').setAttribute('visible', 'true')
+              document.getElementById('GardenScene').setAttribute('visible', 'false')
               document.querySelector('#gSounds').components.sound.pause();
+              document.querySelector('#eTour').components.sound.pause();
               document.querySelector('#hTour').emit('playhTour');
             }
 
           function moveGDN() {
-            document.getElementById('houseScene').setAttribute('visible', 'false')
-            document.getElementById('hse-panR').setAttribute('visible', 'false')
-            document.getElementById('hse-panL').setAttribute('visible', 'false')
-            document.getElementById('gdn-panR').setAttribute('visible', 'true')
-            document.getElementById('gdn-panL').setAttribute('visible', 'true')
+            document.getElementById('welcomeScene').setAttribute('visible', 'false')
+              document.getElementById('entranceScene').setAttribute('visible', 'false')
+              document.getElementById('houseScene').setAttribute('visible', 'false')
+              document.getElementById('GardenScene').setAttribute('visible', 'true')
             document.querySelector('#hseGdnPan').emit('fadeIn');
             document.querySelector('#hMusic').components.sound.pause();
             document.querySelector('#gSounds').emit('playgSounds');
