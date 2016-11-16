@@ -205,19 +205,19 @@
 
         <!-- HOUSE -->
         <a-entity id="houseScene" visible="false" opacity="1">
-        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="false">
+        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true">
             <a-animation mixin="fade"></a-animation>
           </a-sky>
           <a-curvedimage src="#hseRight" id="hse-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="true"></a-curvedimage>
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
           <a-curvedimage src="#hseLeft" id="hse-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="true"></a-curvedimage>
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
 
         <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
 
       
         <!-- Watercolour -->
-      <a-entity id="infoWC" visible="false">
+      <a-entity id="infoWC" visible="true">
         <a-image id="wc-target" src="#target" width="500" height="1200" rotation="0 45 0" position="286 80 508" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
@@ -231,7 +231,7 @@
 
 
         <!-- Organ Photo -->
-      <a-entity id="infoOP" visible="false">
+      <a-entity id="infoOP" visible="true">
         <a-image id="og-target" src="#target" width="800" height="1500" rotation="0 180 0" position="-400 80 885" scale="1 1 1" onclick="showOG()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
@@ -245,7 +245,7 @@
 
 
         <!-- Thomas Painting -->
-      <a-entity id="infoTP" visible="false">
+      <a-entity id="infoTP" visible="true">
         <a-image id="tp-target" src="#target" width="800" height="1500" rotation="0 45 0" position="-385.03 706 -402" scale="1 1 1" onclick="showTP()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
