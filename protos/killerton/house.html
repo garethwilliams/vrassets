@@ -27,8 +27,13 @@
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
      <script src="scripts/aframe-stereo-component.js"></script>
      <script src="js/aframe-hyperlink.js"></script>
-    <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
-    <script src="https://rawgit.com/gmarty/aframe-ui-components/master/dist/aframe-ui-components.min.js"></script>
+     <script src="js/update-raycaster.js"></script>
+<!--    <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script> -->
+   <!-- <script src="https://rawgit.com/gmarty/aframe-ui-components/master/dist/aframe-ui-components.min.js"></script> -->
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
   </head>
   <body>
     <a-scene>
@@ -60,6 +65,13 @@
 
         <!-- Move images -->
         <img id="moveGdn" crossorigin="anonymous" src="/assets/house/moveGdn.png">
+        <img id="moveToHse" crossorigin="anonymous" src="/assets/global/moveHse.jpg">
+
+        <!-- Menu images -->
+        <img id="menuEnt" crossorigin="anonymous" src="/assets/global/menu/menuEnt.png">
+        <img id="menuHse" crossorigin="anonymous" src="/assets/global/menu/menuHouse.png">
+        <img id="menuGdn" crossorigin="anonymous" src="/assets/global/menu/menuGarden.png">
+        <img id="menuBer" crossorigin="anonymous" src="/assets/global/menu/menuBear.png">
 
         <!-- Welcome -->
         <img id="floor" crossorigin="anonymous" src="assets/global/floor.jpg">
@@ -71,15 +83,66 @@
         <a-mixin id="trigInAni" attribute="geometry.theta-length" begin="trigIn" to="360" dur="4000"></a-mixin>
         <a-mixin id="trigOutAni" attribute="geometry.theta-length" begin="trigOut" to="0" dur="4000"></a-mixin>
 
+
+        <!-- Template to use for menu images -->
+        <script id="link" type="text/nunjucks">
+          <a-plane class="link" scale="0.01 0.01 0.01" height="712" width="1000"
+            material="shader: flat; src: {{ thumb }}"
+            event-set__1=""
+            sound="on: click; src: #click-sound"
+            update-raycaster="#cursor"></a-plane>
+        </script>
+
+
       </a-assets>
 
       <a-camera stereocam="eye:left;">
-        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
-      </a-camera>
+
+      <!--   <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"> -->
+<!-- 
+      <a-cursor scale="1 1 1" geometry="primitive: ring; radiusOuter:0.05; thetaStart:0; thetaLength:360;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:2000; property:geometry.radiusOuter; to:0.01;" material="color: #6B3670; shader: flat">
+          
+
+        </a-cursor>  -->
+
+
+        <a-entity position="0 0 -3" geometry="primitive: ring;
+               radiusOuter: 0.10;
+                         radiusInner: 0.08;" material="color: green; shader: flat" cursor="fuse: true">
+       <!-- <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation> -->
+       <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="forwards" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+     </a-entity>
+
+   </a-entity>
+
+       <!-- <a-cursor scale="1 1 1" position="0 0 -10" geometry="primitive: circle; radius:1; width:" fuse="true" fuseTimeout="5000" cursor-feedback="dur:5000; property:geometry.radius; to:0.1" material="color: #6B3670; shader: flat"></a-cursor> -->
+
+       
+
+   <!--     <a-entity cursor="fuse: true; fuseTimeout: 8000" position="0 0 -8" geometry="primitive: circle; radius: 0.04;" material="color: #000000; shader: flat" id="cursorCircle" > 
+     </a-entity> -->
+
+     <!-- <a-cursor fuse="true" fuseTimeout="8000" position="0 0 -8" geometry="primitive: circle; radius: 0.04;" material="color: #000000; shader: flat"></a-cursor> -->
+
+<!-- 
+        <a-entity cursor="fuse: true; fuseTimeout: 500"
+          position="0 0 -1"
+          geometry="primitive: ring"
+          material="color: black; shader: flat">
+          
+        </a-entity> -->
+
+  <!--     </a-camera>
+
+      <a-camera stereocam="eye:left;">
+      <a-entity position="0 0 -10" geometry="primitive: circle; radius:0.2" material="color: #000000; shader: flat"> </a-entity>
+    </a-camera> -->
 
 <!--       <a-camera>
         <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:200;" fuse="true" fuseTimeout="2000" material="color: #6B3670; shader: flat"></a-cursor>
       </a-camera> -->
+
+    </a-camera>
 
         <!-- Audio -->
         <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="false" position="0 0 0" loop="false" on="playhTour"></a-sound>
@@ -99,8 +162,27 @@
 
           <a-light type="ambient" intensity="1" color="#fff"></a-light>
 
-          <a-image id="entrance-target" src="#targetDev" width="20" height="20" rotation="0 141 0" position="22.50 9.5 -18" scale="1 1 1" onclick="moveEnt()" visible="true" transparent="true" data-interactive="true">
+          
+          <a-image id="menuEnt-target" src="#menuEnt" width="1000" height="712" rotation="0 -35.82 0" position="18.58 3.80 -21.99" scale="0.01 0.01 0.01" onclick="moveEnt()" visible="true" transparent="true" data-interactive="true">
           </a-image>
+          <a-image id="menuHse-target" src="#menuHse" width="1000" height="712" rotation="0 -62.28 0" position="25.42 3.80 -13.21" scale="0.01 0.01 0.01" onclick="moveHse()" visible="true" transparent="true" data-interactive="true">
+          </a-image>
+          <a-image id="menuGdn-target" src="#menuGdn" width="1000" height="712" rotation="0 -84.58 0" position="28.49 3.80 -2.30" scale="0.01 0.01 0.01" onclick="moveGDN()" visible="true" transparent="true" data-interactive="true">
+          </a-image>
+          <a-image id="menuBer-target" src="#menuBer" width="1000" height="712" rotation="0 -103 0" position="27.55 3.80 8.82" scale="0.01 0.01 0.01" onclick="moveEnt()" visible="true" transparent="true" data-interactive="true">
+          </a-image>
+
+        <a-entity id="links" scale="0.7 0.7 0.7" rotation="0 62 0" position="-22 0 0">
+          <a-entity position="0 0 0" template="src: #link" data-thumb="#menuEnt" onmouseenter="menuLoader()" onclick="moveEnt()"></a-entity>
+          <a-entity id="menuLoad" geometry="primitive: ring; width: 1; height: 1; radiusInner: 1; radiusInner:2; thetaLength: 40" material="color: yellow; shader:flat; side: double" position="0 -4 0 ">
+            <!-- <a-animation attribute="geometry.width" begin="loadIn" to="14" dur="8000"> </a-animation> -->
+
+            <a-animation attribute="geometry.thetaLength" begin="loadIn" to="360" dur="8000"> </a-animation>
+        </a-entity>
+          <a-entity position="12.5 0 0" template="src: #link" data-thumb="#menuHse"></a-entity>
+          <a-entity position="25 0 0" template="src: #link" data-thumb="#menuGdn"></a-entity>
+        </a-entity>
+          
 
         </a-entity>
 
@@ -110,16 +192,43 @@
 
           <a-sky id="entrancePan" radius="5000" src="#entrance" rotation="0 240 0" visible="true" material="opacity: 1"></a-sky>
 
-          <a-image id="house-target" src="#target" width="400" height="650" rotation="0 75 0" position="520 0 200" scale="1 1 1" onclick="moveHse()" visible="true" transparent="true" data-interactive="true">
+          <a-image id="house-target" src="#target" width="400" height="650" rotation="0 75 0" position="520 0 200" scale="1 1 1" onclick="moveHse()" visible="false" transparent="true" data-interactive="true">
           </a-image>
+
+          <a-image id="house-move" src="#moveToHse" width="1552" height="284" rotation="0 -113.50 0" position="443.45 -50 194" visible="false" scale="0.2 0.2 0.2">
+           <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
+          </a-image>
+
           <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
           <a-animation mixin="fade"></a-animation>
+
+          <script type="text/javascript">
+
+            document.querySelector('#eTour').addEventListener('sound-ended', function() {
+                document.getElementById('house-target').setAttribute('visible', 'true')
+                document.getElementById('house-move').setAttribute('visible', 'true')
+            });
+          </script>
+        </a-entity>
+
+        <!-- GARDEN -->
+        <a-entity id="gardenScene" visible="false" material="opacity: 1">
+          <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="false" material="opacity: 1">
+          </a-sky>
+
+          <a-curvedimage src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
+          <a-curvedimage src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
+          <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
+
+          
         </a-entity>
         
 
         <!-- HOUSE -->
         <a-entity id="houseScene" visible="false" opacity="1">
-        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true">
+        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="false">
             <a-animation mixin="fade"></a-animation>
           </a-sky>
           <a-curvedimage src="#hseRight" id="hse-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
@@ -131,6 +240,7 @@
 
       
         <!-- Watercolour -->
+      <a-entity id="infoWC" visible="false">
         <a-image id="wc-target" src="#target" width="500" height="1200" rotation="0 45 0" position="286 80 508" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
@@ -140,9 +250,11 @@
            <a-animation mixin="fade"></a-animation>
            <a-animation mixin="Outfade"></a-animation>
         </a-image>
+      </a-entity>
 
 
         <!-- Organ Photo -->
+      <a-entity id="infoOP" visible="false">
         <a-image id="og-target" src="#target" width="800" height="1500" rotation="0 180 0" position="-400 80 885" scale="1 1 1" onclick="showOG()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
@@ -151,10 +263,12 @@
         <a-image id="og-situ" src="#ogInfo" width="1342" height="1298" rotation="0 135 0" position="-855 60 885" scale="0.6 0.6 0.6" transparent="true" visible="false" material="opacity: 0">
            <a-animation mixin="fade"></a-animation>
            <a-animation mixin="Outfade"></a-animation>
-        </a-image>
+        </a-image> 
+      </a-entity>
 
 
         <!-- Thomas Painting -->
+      <a-entity id="infoTP" visible="false">
         <a-image id="tp-target" src="#target" width="800" height="1500" rotation="0 45 0" position="-385.03 706 -402" scale="1 1 1" onclick="showTP()" visible="true" transparent="true" data-interactive="true">
         </a-image>
 
@@ -169,6 +283,7 @@
            <a-animation mixin="fade"></a-animation>
            <a-animation mixin="Outfade"></a-animation>
         </a-image>
+      </a-entity>
 
 
         <!-- Move from House to Garden -->
@@ -182,19 +297,7 @@
 
 
 
-        <!-- GARDEN -->
-        <a-entity id="GardenScene" visible="false" opacity="1">
-          <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="true" material="opacity: 0">
-              <a-animation mixin="fade"></a-animation>
-          </a-sky>
-
-          <a-curvedimage src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
-          <a-curvedimage src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
-        </a-entity>
-
-
+      
 
           <script type="text/javascript">
 
@@ -202,6 +305,11 @@
                 document.querySelector('#hMusic').emit('playhMusic');
                 document.getElementById('gdn-target').setAttribute('visible', 'true')
                 document.getElementById('gdn-move').setAttribute('visible', 'true')
+
+                document.getElementById('infoWC').setAttribute('visible', 'true')
+                document.getElementById('infoOP').setAttribute('visible', 'true')
+                document.getElementById('infoTP').setAttribute('visible', 'true')
+
             });
 
             // document.querySelector('#tp-target').addEventListener('mouseenter', function () {
@@ -217,6 +325,8 @@
             //    document.querySelector('#tp-timer').emit('trigOut');
             // });
            
+
+           // Show info points only after the audio tour has finished playing in house
             
 
             function showTP() {
@@ -271,7 +381,7 @@
               document.getElementById('welcomeScene').setAttribute('visible', 'true')
               document.getElementById('entranceScene').setAttribute('visible', 'false')
               document.getElementById('houseScene').setAttribute('visible', 'false')
-              document.getElementById('GardenScene').setAttribute('visible', 'false')
+              document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.querySelector('#eTour').components.sound.pause();
               document.querySelector('#hTour').components.sound.pause();
               document.querySelector('#gSounds').components.sound.pause();
@@ -282,7 +392,7 @@
               document.getElementById('welcomeScene').setAttribute('visible', 'false')
               document.getElementById('entranceScene').setAttribute('visible', 'true')
               document.getElementById('houseScene').setAttribute('visible', 'false')
-              document.getElementById('GardenScene').setAttribute('visible', 'false')
+              document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.querySelector('#eTour').emit('playeTour');
               document.querySelector('#gSounds').emit('playgSounds');
             }
@@ -291,7 +401,7 @@
               document.getElementById('welcomeScene').setAttribute('visible', 'false')
               document.getElementById('entranceScene').setAttribute('visible', 'false')
               document.getElementById('houseScene').setAttribute('visible', 'true')
-              document.getElementById('GardenScene').setAttribute('visible', 'false')
+              document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.querySelector('#gSounds').components.sound.pause();
               document.querySelector('#eTour').components.sound.pause();
               document.querySelector('#hTour').emit('playhTour');
@@ -301,11 +411,19 @@
             document.getElementById('welcomeScene').setAttribute('visible', 'false')
               document.getElementById('entranceScene').setAttribute('visible', 'false')
               document.getElementById('houseScene').setAttribute('visible', 'false')
-              document.getElementById('GardenScene').setAttribute('visible', 'true')
-            document.querySelector('#hseGdnPan').emit('fadeIn');
+              document.getElementById('gardenScene').setAttribute('visible', 'true')
             document.querySelector('#hMusic').components.sound.pause();
             document.querySelector('#gSounds').emit('playgSounds');
           }
+
+          function menuLoader() {
+            document.querySelector('#menuLoad').emit('loadIn');
+          }
+
+          function menuUnLoader() {
+            document.querySelector('#menuLoad').emit('loadOut');
+          }
+
         </script>
 
       </a-scene>
