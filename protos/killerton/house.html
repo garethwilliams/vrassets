@@ -193,10 +193,10 @@
           <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="false" material="opacity: 1">
           </a-sky>
 
-          <a-curvedimage src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
-          <a-curvedimage src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-curvedimage>
+          <a-sky src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+          <a-sky src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
           <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
 
           
@@ -264,7 +264,7 @@
 
 
         <!-- Move from House to Garden -->
-        <a-image id="gdn-target" src="#target" width="600" height="900" rotation="0 120 0" position="492 50 -309" scale="1 1 1" onclick="moveGDN()" visible="false" transparent="true" data-interactive="true">
+        <a-image id="gdn-target" src="#target" width="600" height="900" rotation="0 120 0" position="492 50 -309" scale="1 1 1" onclick="moveGDN()" visible="true" transparent="true" data-interactive="true">
            <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
         </a-image>
 
@@ -331,7 +331,7 @@
                 document.querySelector('#og-situ').emit('fadeIn');
                 document.querySelector('#tp-situ').emit('fadeOut');
                 document.querySelector('#wc-situ').emit('fadeOut');
-                document.querySelector('#hTourO').emit('hTourO');
+                document.querySelector('#hTourO').emit('playhTourO');
             }
 
             function showWC() {
