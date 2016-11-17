@@ -25,7 +25,7 @@
     <link rel="prefetch" href="house.html">
     <link rel="prefetch" href="garden.html">
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
-     <script src="scripts/aframe-stereo-component.js"></script>
+     <!-- <script src="scripts/aframe-stereo-component.js"></script> -->
      <script src="js/aframe-hyperlink.js"></script>
      <script src="js/update-raycaster.js"></script>
    <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
@@ -49,8 +49,8 @@
         <img id="gdnLeft" crossorigin="anonymous" src="assets/garden/pan-left.jpg">
         <img id="gdnRight" crossorigin="anonymous" src="assets/garden/pan-right.jpg">
 
-        <img id="gdnLeft" crossorigin="anonymous" src="assets/garden/3d/gdn-lft.jpg">
-        <img id="gdnRight" crossorigin="anonymous" src="assets/garden/3d/gdn-rgt.jpg">
+        <!-- <img id="gdnLeft" crossorigin="anonymous" src="assets/garden/3d/gdn-lft.jpg">
+        <img id="gdnRight" crossorigin="anonymous" src="assets/garden/3d/gdn-rgt.jpg"> -->
 
         <!-- assets -->
         <img id="target" crossorigin="anonymous" src="assets/global/target.png">
@@ -92,7 +92,7 @@
 
       </a-assets>
 
-     <a-camera stereocam="eye:left;">
+     <a-camera>
 
        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="4000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #FFCF27; shader: flat">
 

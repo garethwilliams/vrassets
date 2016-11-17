@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+      <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+     <script src="scripts/aframe-stereo-component.js"></script>
+
+    <title>National Trust - Killerton House</title>
+    <meta name="description" content="National Trust - Killerton House">
+      </head>
+  <body>
+    <a-scene>
+      <a-assets>
+
+       <img id="gdnLeft" crossorigin="anonymous" src="assets/garden/pan-left.jpg">
+        <img id="gdnRight" crossorigin="anonymous" src="assets/garden/pan-right.jpg">
+    </a-assets>
+
+    <a-camera  stereocam="left"> 
+	</a-camera>
+
+    <a-sky src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+    <a-sky src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+
+               </a-scene>
+
+               </body>
+            </html>
