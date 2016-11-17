@@ -49,6 +49,12 @@
         <img id="gdnLeft" crossorigin="anonymous" src="assets/garden/pan-left.jpg">
         <img id="gdnRight" crossorigin="anonymous" src="assets/garden/pan-right.jpg">
 
+        <img id="bearRight" crossorigin="anonymous" src="assets/bearhut/rgt-panBlur.jpg">
+        <img id="bearLeft" crossorigin="anonymous" src="assets/bearhut/lft-panBlur.jpg">
+
+        <img id="welcRight" crossorigin="anonymous" src="assets/welcome/rightBlurAll.jpg">
+        <img id="welcLeft" crossorigin="anonymous" src="assets/welcome/leftBlurAll.jpg">
+
         <!-- assets -->
         <img id="target" crossorigin="anonymous" src="assets/global/target.png">
         <img id="targetDev" crossorigin="anonymous" src="assets/global/targetDev.png">
@@ -75,7 +81,7 @@
 
         <!-- Welcome -->
         <img id="floor" crossorigin="anonymous" src="assets/global/floor.jpg">
-        <img id="welcome" crossorigin="anonymous" src="assets/global/welKil.png">
+        <img id="welcome" crossorigin="anonymous" src="assets/global/welcomeTitleWhite.png">
 
         <!-- Mixins -->
         <a-mixin id="fade" attribute="material.opacity" begin="fadeIn" to="1" dur="2000"></a-mixin>
@@ -119,9 +125,12 @@
         <!-- WELCOME -->
         <a-entity id="welcomeScene" visible="true" opacity="1">
 
-          <a-sky id="welcomePan" color="#ffffff" radius="40" rotation="0 0 0"></a-sky>
-
-          <a-plane src="#floor" width="1200" height="1200" side="front" rotation="-90 0 0" position="0 -5 0" scale="0.05 0.05 0.05" transparent="true"></a-plane>
+<!--           <a-sky id="welcomePan" color="#ffffff" radius="40" rotation="0 0 0"></a-sky>
+ -->
+          <a-sky src="#welcRight" id="wel-panR" stereo="eye:right" rotation="0 237 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+          <a-sky src="#welcLeft" id="wel-panL" stereo="eye:left" rotation="0 237 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+<!-- 
+          <a-plane src="#floor" width="1200" height="1200" side="front" rotation="-90 0 0" position="0 -5 0" scale="0.05 0.05 0.05" transparent="true"></a-plane> -->
 
           <a-plane src="#welcome" width="666" height="134" side="front" rotation="0 0 0" position="0 3 -26" scale="0.03 0.03 0.03" transparent="true"></a-plane>
 
@@ -143,7 +152,7 @@
             <a-animation attribute="position" begin="mouseleave" from="26.49 3.80 -0.30" to="28.49 3.80 -2.30" dur="400"></a-animation>  -->
           </a-image>
 
-          <a-image id="menuBer-target" src="#menuBer" width="1000" height="712" rotation="0 -103 0" position="27.55 3.80 8.82" scale="0.01 0.01 0.01" onclick="moveEnt()" visible="true" transparent="true" data-interactive="true">
+          <a-image id="menuBer-target" src="#menuBer" width="1000" height="712" rotation="0 -103 0" position="27.55 3.80 8.82" scale="0.01 0.01 0.01" onclick="moveBer()" visible="true" transparent="true" data-interactive="true">
 <!--           <a-animation attribute="position" begin="mouseenter" from="27.55 3.80 8.82" to="25.55 3.80 6.82" dur="400"></a-animation>
             <a-animation attribute="position" begin="mouseleave" from="25.55 3.80 6.82" to="27.55 3.80 8.82" dur="400"></a-animation>  -->
           </a-image>
@@ -198,8 +207,23 @@
                    rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
           <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
 
-          
         </a-entity>
+
+
+
+         <!-- BEAR HUT -->
+        <a-entity id="bearScene" visible="false" material="opacity: 1">
+
+          <a-sky src="#bearRight" id="bear-panR" stereo="eye:right" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+          <a-sky src="#bearLeft" id="bear-panL" stereo="eye:left" rotation="0 237 0" radius="5000" theta-length="360"
+                   rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+        
+          <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
+
+        </a-entity>
+
+
         
 
         <!-- HOUSE -->
@@ -365,6 +389,7 @@
               document.getElementById('entranceScene').setAttribute('visible', 'false')
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
+              document.getElementById('bearScene').setAttribute('visible', 'false')
               document.querySelector('#eTour').components.sound.pause();
               document.querySelector('#hTour').components.sound.pause();
               document.querySelector('#gSounds').components.sound.pause();
@@ -376,6 +401,7 @@
               document.getElementById('entranceScene').setAttribute('visible', 'true')
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
+              document.getElementById('bearScene').setAttribute('visible', 'false')
               document.querySelector('#eTour').emit('playeTour');
               document.querySelector('#gSounds').emit('playgSounds');
             }
@@ -385,6 +411,7 @@
               document.getElementById('entranceScene').setAttribute('visible', 'false')
               document.getElementById('houseScene').setAttribute('visible', 'true')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
+              document.getElementById('bearScene').setAttribute('visible', 'false')
               document.querySelector('#gSounds').components.sound.pause();
               document.querySelector('#eTour').components.sound.pause();
               document.querySelector('#hMusic').emit('playhMusic');
@@ -392,11 +419,21 @@
               
             }
 
+            function moveBer() {
+              document.getElementById('welcomeScene').setAttribute('visible', 'false')
+              document.getElementById('entranceScene').setAttribute('visible', 'false')
+              document.getElementById('houseScene').setAttribute('visible', 'false')
+              document.getElementById('gardenScene').setAttribute('visible', 'false')
+              document.getElementById('bearScene').setAttribute('visible', 'true')
+              document.querySelector('#outSounds').components.sound.pause();
+            }
+
           function moveGDN() {
             document.getElementById('welcomeScene').setAttribute('visible', 'false')
               document.getElementById('entranceScene').setAttribute('visible', 'false')
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'true')
+              document.getElementById('bearScene').setAttribute('visible', 'false')
             document.querySelector('#hMusic').components.sound.pause();
             document.querySelector('#hTourG').emit('playhTourG');
             document.querySelector('#outSounds').emit('playOSounds');
