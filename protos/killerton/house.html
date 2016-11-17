@@ -107,7 +107,7 @@
         <a-sound src="src: url(assets/audio/musicroom/hTourGarden.mp3)" id="hTourG" autoplay="false" position="0 0 0" loop="false" on="playhTourG"></a-sound>
         <a-sound src="src: url(assets/audio/musicroom/hTourOrgan.mp3)" id="hTourO" autoplay="false" position="0 0 0" loop="false" on="playhTourO"></a-sound>
         <a-sound src="src: url(assets/audio/musicroom/hTourPainting.mp3)" id="hTourP" autoplay="false" position="0 0 0" loop="false" on="playhTourP"></a-sound>
-        <a-sound src="src: url(assets/audio/musicroom/hTourStart.mp3)" id="hTourS" autoplay="false" position="0 0 0" loop="false" on="playhTourS"></a-sound>
+        <a-sound src="src: url(assets/audio/musicroom/hTourIntro.mp3)" id="hTourS" autoplay="false" position="0 0 0" loop="false" on="playhTourS"></a-sound>
         <a-sound src="src: url(assets/audio/musicroom/hTourWatercolours.mp3)" id="hTourC" autoplay="false" position="0 0 0" loop="false" on="playhTourC"></a-sound>
 
 
@@ -264,13 +264,15 @@
 
 
         <!-- Move from House to Garden -->
-        <a-image id="gdn-target" src="#target" width="600" height="900" rotation="0 120 0" position="492 50 -309" scale="1 1 1" onclick="moveGDN()" visible="true" transparent="true" data-interactive="true">
-           <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
-        </a-image>
+        <a-entity id="moveHseGdn" visible="false">
+          <a-image id="gdn-target" src="#target" width="600" height="900" rotation="0 120 0" position="492 50 -309" scale="1 1 1" onclick="moveGDN()" visible="true" transparent="true" data-interactive="true">
+             <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
+          </a-image>
 
-        <a-image id="gdn-move" src="#moveGdn" width="913" height="142" rotation="0 -66 0" position="417.71 -50 -176" visible="false" scale="0.2 0.2 0.2">
-           <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
-        </a-image>
+          <a-image id="gdn-move" src="#moveGdn" width="913" height="142" rotation="0 -66 0" position="417.71 -50 -176" visible="true" scale="0.2 0.2 0.2">
+             <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
+          </a-image>
+      </a-entity>
 
 
 
@@ -278,16 +280,16 @@
 
           <script type="text/javascript">
 
-            // document.querySelector('#hTour').addEventListener('sound-ended', function() {
-            //     document.querySelector('#hMusic').emit('playhMusic');
-            //     document.getElementById('gdn-target').setAttribute('visible', 'true')
-            //     document.getElementById('gdn-move').setAttribute('visible', 'true')
+             document.querySelector('#hTourC').addEventListener('sound-ended', function() {
+                 // document.querySelector('#hMusic').emit('playhMusic');
+                 document.getElementById('moveHseGdn').setAttribute('visible', 'true')
+                
 
             //     // document.getElementById('infoWC').setAttribute('visible', 'true')
             //     // document.getElementById('infoOP').setAttribute('visible', 'true')
             //     // document.getElementById('infoTP').setAttribute('visible', 'true')
 
-            // });
+             });
 
             // document.querySelector('#tp-target').addEventListener('mouseenter', function () {
             //   document.querySelector('#tp-timer').emit('trigIn');
@@ -313,12 +315,12 @@
                 document.getElementById('og-target').setAttribute('visible', 'true')
                 document.getElementById('wc-situ').setAttribute('visible', 'false')
                 document.getElementById('wc-target').setAttribute('visible', 'true')
+                document.querySelector('#hTourP').emit('playhTourP');
                 document.querySelector('#tp-situ').emit('fadeIn');
                 document.querySelector('#og-situ').emit('fadeOut');
                 document.querySelector('#wc-situ').emit('fadeOut');
                 document.querySelector('#tp-timer').emit('trigIn');
                 document.querySelector('#hTourP').emit('playhTourP');
-
             }
 
             function showOG() {
