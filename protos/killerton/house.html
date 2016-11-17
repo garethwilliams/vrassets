@@ -39,9 +39,9 @@
     <a-scene>
       <a-assets>
         <!-- panoramas -->
-        <img id="house" crossorigin="anonymous" src="assets/house/house.jpg">
+        <!-- <img id="house" crossorigin="anonymous" src="assets/house/house.jpg"> -->
         <img id="entrance" crossorigin="anonymous" src="assets/entrance/entPan.jpg">
-        <img id="garden" crossorigin="anonymous" src="assets/garden/gdnHse.jpg">
+        <!-- <img id="garden" crossorigin="anonymous" src="assets/garden/gdnHse.jpg"> -->
 
         <!-- 3D -->
         <img id="hseLeft" crossorigin="anonymous" src="assets/house/3d/hse-lft.jpg">
@@ -54,6 +54,8 @@
 
         <img id="welcRight" crossorigin="anonymous" src="assets/welcome/rightBlurAll.jpg">
         <img id="welcLeft" crossorigin="anonymous" src="assets/welcome/leftBlurAll.jpg">
+
+        <img id="welBG" crossorigin="anonymous" src="assets/welcome/blur.jpg">
 
         <!-- assets -->
         <img id="target" crossorigin="anonymous" src="assets/global/target.png">
@@ -69,9 +71,15 @@
         <img id="tpInfo" crossorigin="anonymous" src="assets/house/tp-info.png">
         <img id="ogInfo" crossorigin="anonymous" src="assets/house/og-info.png">
 
+        <!-- Guide images -->
+        <img id="guideInfo" crossorigin="anonymous" src="assets/global/guideInfo.png">
+        <img id="guideMenu" crossorigin="anonymous" src="assets/global/guideMenu.png">
+        <img id="guideMove" crossorigin="anonymous" src="assets/global/guideMove.png">
+
         <!-- Move images -->
         <img id="moveGdn" crossorigin="anonymous" src="assets/house/moveGdn.png">
         <img id="moveToHse" crossorigin="anonymous" src="assets/global/moveHse.jpg">
+        <img id="moveToBer" crossorigin="anonymous" src="assets/global/moveBear.jpg">
 
         <!-- Menu images -->
         <img id="menuEnt" crossorigin="anonymous" src="assets/global/menu/menuEnt.png">
@@ -80,7 +88,7 @@
         <img id="menuBer" crossorigin="anonymous" src="assets/global/menu/menuBear.png">
 
         <!-- Welcome -->
-        <img id="floor" crossorigin="anonymous" src="assets/global/floor.jpg">
+        <!-- <img id="floor" crossorigin="anonymous" src="assets/global/floor.jpg"> -->
         <img id="welcome" crossorigin="anonymous" src="assets/global/welcomeTitleWhite.png">
 
         <!-- Mixins -->
@@ -127,8 +135,12 @@
 
 <!--           <a-sky id="welcomePan" color="#ffffff" radius="40" rotation="0 0 0"></a-sky>
  -->
-          <a-sky src="#welcRight" id="wel-panR" stereo="eye:right" rotation="0 237 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
-          <a-sky src="#welcLeft" id="wel-panL" stereo="eye:left" rotation="0 237 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+<!--           <a-sky src="#welcRight" id="wel-panR" stereo="eye:right" rotation="0 237 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+          <a-sky src="#welcLeft" id="wel-panL" stereo="eye:left" rotation="0 237 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky> -->
+
+          <a-sky src="#welBG" id="wel-panL" stereo="eye:both" rotation="0 237 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+
+          
 <!-- 
           <a-plane src="#floor" width="1200" height="1200" side="front" rotation="-90 0 0" position="0 -5 0" scale="0.05 0.05 0.05" transparent="true"></a-plane> -->
 
@@ -155,6 +167,13 @@
           <a-image id="menuBer-target" src="#menuBer" width="1000" height="712" rotation="0 -103 0" position="27.55 3.80 8.82" scale="0.01 0.01 0.01" onclick="moveBer()" visible="true" transparent="true" data-interactive="true">
 <!--           <a-animation attribute="position" begin="mouseenter" from="27.55 3.80 8.82" to="25.55 3.80 6.82" dur="400"></a-animation>
             <a-animation attribute="position" begin="mouseleave" from="25.55 3.80 6.82" to="27.55 3.80 8.82" dur="400"></a-animation>  -->
+          </a-image>
+
+          <a-image id="moveGuide" src="#guideMove" width="2174" height="1862" rotation="0 55 0" position="-21 4 -18" scale="0.005 0.005 0.005" visible="true" transparent="true">
+          </a-image>
+          <a-image id="infoGuide" src="#guideInfo" width="2006" height="1490" rotation="0 86 0" position="-26 4 4" scale="0.005 0.005 0.005" visible="true" transparent="true">
+          </a-image>
+          <a-image id="menuGuide" src="#guideMenu" width="2158" height="1318" rotation="0 105 0" position="-25 3.80 26" scale="0.005 0.005 0.005" visible="true" transparent="true">
           </a-image>
 
 <!--         <a-entity id="links" scale="0.7 0.7 0.7" rotation="0 62 0" position="-22 0 0">
@@ -206,6 +225,13 @@
           <a-sky src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
                    rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
           <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
+
+          <a-image id="bear-target" src="#targetDev" width="300" height="200" rotation="0 0 0" position="-102 0 388" scale="1 1 1" onclick="moveBer()" visible="true" transparent="true" data-interactive="true">
+          </a-image>
+
+          <a-image id="bear-move" src="#moveToBer" width="1430" height="284" rotation="0 -190 0" position="-78 -70 300" visible="true" scale="0.15 0.15 0.15">
+           <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
+          </a-image>
 
         </a-entity>
 
