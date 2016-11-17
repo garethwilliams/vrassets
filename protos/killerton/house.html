@@ -204,13 +204,13 @@
 
         <!-- HOUSE -->
         <a-entity id="houseScene" visible="false" opacity="1">
-        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="true">
+        <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="false">
             <a-animation mixin="fade"></a-animation>
           </a-sky>
           <a-curvedimage src="#hseRight" id="hse-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="true"></a-curvedimage>
           <a-curvedimage src="#hseLeft" id="hse-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
-                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="true"></a-curvedimage>
 
         <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="1 1 1" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
 
