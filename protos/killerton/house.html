@@ -114,7 +114,9 @@
         <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="false" position="0 0 0" loop="false" on="playhTour"></a-sound>
         <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="-4 0-4" loop="true" on="playhMusic"></a-sound>
         <a-sound src="src: url(assets/audio/gdnSounds.mp3)" id="gSounds" autoplay="false" position="0 0 0" loop="true" on="playgSounds"></a-sound>
-        <a-sound src="src: url(assets/audio/entTour.mp3)" id="eTour" autoplay="false" position="0 0 0" loop="false" on="playeTour"></a-sound>
+        <a-sound src="src: url(assets/audio/entTourA.mp3)" id="eTour" autoplay="false" position="0 0 0" loop="false" on="playeTour"></a-sound>
+
+        <a-sound src="src: url(assets/audio/outSounds.mp3)" id="outSounds" autoplay="false" position="0 0 0" loop="false" on="playOSounds"></a-sound>
 
 
         <!-- WELCOME -->
@@ -172,7 +174,7 @@
           <a-image id="house-target" src="#target" width="400" height="650" rotation="0 75 0" position="520 0 200" scale="1 1 1" onclick="moveHse()" visible="false" transparent="true" data-interactive="true">
           </a-image>
 
-          <a-image id="house-move" src="#moveToHse" width="1552" height="284" rotation="0 -113.50 0" position="443.45 -50 194" visible="false" scale="0.2 0.2 0.2">
+          <a-image id="house-move" src="#moveToHse" width="1552" height="284" rotation="0 -123.50 0" position="436.27.45 -70 300" visible="false" scale="0.15 0.15 0.15">
            <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
           </a-image>
 
@@ -399,7 +401,7 @@
               document.getElementById('gardenScene').setAttribute('visible', 'true')
             document.querySelector('#hMusic').components.sound.pause();
             document.querySelector('#hTourG').emit('playhTourG');
-          //  document.querySelector('#gSounds').emit('playgSounds');
+            document.querySelector('#outSounds').emit('playOSounds');
           }
 
           function menuLoader() {
