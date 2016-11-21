@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      html, body { background: #000; }
+      a-scene { transition: 2s opacity ease-in-out, 2s visibility ease-in-out; }
+      a-scene:not([data-is-loaded="true"]) { opacity: 0; pointer-events: none; transition: none; visibility: visible; }
+      a-scene[data-is-loaded="true"] { opacity: 1; pointer-events: auto; visibility: visible; }
+    </style>
+    <!-- <script src="sw-load.js" data-service-worker="sw.js" data-service-worker-scope="./"></script> -->
+    // <script>
+    //   AFRAME.registerComponent('auto-enter-vr',init: function () {
+    //     this.el.sceneEl.enterVR();
+    //   }
+    //   });
+    // </script>
+
+   
+
+    <title>National Trust - Killerton House</title>
+    <meta name="description" content="National Trust - Killerton House">
+    <link rel="preload" href="house.html">
+    <link rel="preload" href="garden.html">
+    <link rel="prefetch" href="house.html">
+    <link rel="prefetch" href="garden.html">
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+     <script src="scripts/aframe-stereo-component.js"></script>
+     <script src="js/aframe-hyperlink.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
+    <script src="https://rawgit.com/gmarty/aframe-ui-components/master/dist/aframe-ui-components.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <!-- panoramas -->
+        <img id="house" crossorigin="anonymous" src="/assets/house/house.jpg">
+        <img id="entrance" crossorigin="anonymous" src="/assets/ent_right.jpg">
+        <img id="garden" crossorigin="anonymous" src="/assets/garden/gdnHse.jpg">
+
+        <!-- 3D -->
+        <img id="hseLeft" crossorigin="anonymous" src="/assets/house/3d/hse-lft.jpg">
+        <img id="hseRight" crossorigin="anonymous" src="/assets/house/3d/hse-right.jpg">
+        <img id="gdnLeft" crossorigin="anonymous" src="/assets/garden/3d/gdn-lft.jpg">
+        <img id="gdnRight" crossorigin="anonymous" src="/assets/garden/3d/gdn-rgt.jpg">
+
+        <!-- assets -->
+        <img id="target" crossorigin="anonymous" src="/assets/global/target.png">
+        <img id="targetDev" crossorigin="anonymous" src="/assets/global/targetDev.png">
+
+        <img id="info" crossorigin="anonymous" src="/assets/global/infoPoint.png">
+        <img id="infoPurp" crossorigin="anonymous" src="/assets/global/infoPointPurp.png">
+
+        <!-- Info images -->
+        <img id="wcInfo" crossorigin="anonymous" src="/assets/house/wc-info.png">
+        <img id="tpInfo" crossorigin="anonymous" src="/assets/house/tp-info.png">
+        <img id="ogInfo" crossorigin="anonymous" src="/assets/house/og-info.png">
+
+        <!-- Move images -->
+        <img id="moveGdn" crossorigin="anonymous" src="/assets/house/moveGdn.png">
+
+        <!-- Mixins -->
+        <a-mixin id="fade" attribute="material.opacity" begin="fadeIn" to="1" dur="2000"></a-mixin>
+        <a-mixin id="Outfade" attribute="material.opacity" begin="fadeOut" to="0" dur="2000"></a-mixin>
+      </a-assets>
+
+      <a-camera stereocam="eye:left;">
+        <a-cursor scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="2000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #6B3670; shader: flat"></a-cursor>
+      </a-camera>
+
+<!--       <a-camera>
+        <a-cursor geometry="primitive: ring; thetaStart:0; thetaLength:200;" fuse="true" fuseTimeout="2000" material="color: #6B3670; shader: flat"></a-cursor>
+      </a-camera> -->
+
+
+        <!-- 360 house -->
+        <a-entity class="scene" id="mainScene" visible="true">
+          <a-sky id="housePan" radius="5000" src="#house" rotation="0 320 0" visible="false">
+            <a-animation mixin="fade"></a-animation>
+          </a-sky>
+          <a-sky id="entrancePan" radius="5000" src="#entrance" rotation="0 240 0" visible="true" material="opacity: 1">
+            <a-animation mixin="fade"></a-animation>
+          </a-sky>
+          <a-sky id="hseGdnPan" radius="5000" src="#garden" rotation="0 320 0" visible="false" material="opacity: 0">
+            <a-animation mixin="fade"></a-animation>
+          </a-sky>
+
+          <a-curvedimage src="#hseRight" id="hse-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
+          <a-curvedimage src="#hseLeft" id="hse-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false"></a-curvedimage>
+
+          <a-curvedimage src="#gdnRight" id="gdn-panR" stereo="eye:right" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false" ></a-curvedimage>
+          <a-curvedimage src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
+                 rotation="0 100 0" scale="0.8 0.8 0.8" visible="false" ></a-curvedimage>
+
+        </a-entity>
+
+        <!-- Audio -->
+        <a-sound src="src: url(assets/audio/houseTour.mp3)" id="hTour" autoplay="false" position="0 0 0" loop="false" on="playhTour"></a-sound>
+        <a-sound src="src: url(assets/audio/houseMusic.mp3)" id="hMusic" autoplay="false" position="-7 0 -15" loop="true" on="playhMusic"></a-sound>
+        <a-sound src="src: url(assets/audio/gdnSounds.mp3)" id="gSounds" autoplay="true" position="0 0 0" loop="true" on="playgSounds"></a-sound>
+        <a-sound src="src: url(assets/audio/entTour.mp3)" id="eTour" autoplay="true" position="0 0 0" loop="false" on="playeTour"></a-sound>
+
+        <!-- ENTRANCE -->
+        <a-entity id="entranceScene" visible="true"> <!-- make this false after dev -->
+          <a-image id="house-target" src="#target" width="400" height="650" rotation="0 75 0" position="520 0 200" scale="1 1 1" onclick="moveHse()" visible="true" transparent="true" data-interactive="true">
+        </a-image>
+        </a-entity>
+        
+
+        <!-- HOUSE -->
+        <a-entity id="houseScene" visible="false" opacity="1">
+      
+        <!-- Watercolour -->
+        <a-image id="wc-target" src="#target" width="500" height="1200" rotation="0 45 0" position="286 80 508" scale="1 1 1" onclick="showWC()" visible="true" transparent="true" data-interactive="true">
+        </a-image>
+
+        <a-image id="wc-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="228 -32 433" visible="true" scale="0.3 0.3 0.3"></a-image>
+
+        <a-image id="wc-situ" src="#wcInfo" width="1342" height="1298" rotation="0 230 0" position="1035 80 720" scale="0.6 0.6 0.6" transparent="true" visible="false" material="opacity: 0">
+           <a-animation mixin="fade"></a-animation>
+           <a-animation mixin="Outfade"></a-animation>
+        </a-image>
+
+
+        <!-- Organ Photo -->
+        <a-image id="og-target" src="#target" width="800" height="1500" rotation="0 180 0" position="-400 80 885" scale="1 1 1" onclick="showOG()" visible="true" transparent="true" data-interactive="true">
+        </a-image>
+
+        <a-image id="og-point" src="#infoPurp" width="100" height="100" rotation="0 182 0" position="-166.48 -65.22 811" visible="true" scale="0.5 0.5 0.5"></a-image>
+
+        <a-image id="og-situ" src="#ogInfo" width="1342" height="1298" rotation="0 135 0" position="-855 60 885" scale="0.6 0.6 0.6" transparent="true" visible="false" material="opacity: 0">
+           <a-animation mixin="fade"></a-animation>
+           <a-animation mixin="Outfade"></a-animation>
+        </a-image>
+
+
+        <!-- Thomas Painting -->
+        <a-image id="tp-target" src="#target" width="800" height="1500" rotation="0 45 0" position="-385.03 706 -402" scale="1 1 1" onclick="showTP()" visible="true" transparent="true" data-interactive="true">
+        </a-image>
+
+        <a-image id="tp-point" src="#infoPurp" width="100" height="100" rotation="0 45 0" position="-402.85 196 -248" visible="true" scale="0.3 0.3 0.3"></a-image>
+
+        <a-image id="tp-situ" src="#tpInfo" width="1862" height="984" rotation="0 45 0" position="-315 35 -285" scale="0.2 0.2 0.2" transparent="true" visible="false" material="opacity: 0">
+           <a-animation mixin="fade"></a-animation>
+           <a-animation mixin="Outfade"></a-animation>
+        </a-image>
+
+
+        <!-- Move from House to Garden -->
+        <a-image id="gdn-target" src="#target" width="600" height="900" rotation="0 120 0" position="492 50 -309" scale="1 1 1" onclick="moveGDN()" visible="false" transparent="true" data-interactive="true">
+           <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
+        </a-image>
+
+        <a-image id="gdn-move" src="#moveGdn" width="913" height="142" rotation="0 -66 0" position="417.71 -50 -176" visible="false" scale="0.2 0.2 0.2">
+           <!-- <a-animation attribute="visible" begin="45000" to="true"></a-animation> -->
+        </a-image>
+
+<!--
+ <script type="text/javascript">
+      AFRAME.registerComponent('play-next-sound', {
+        schema: {type: 'selector'},
+
+        init: function () {
+          var targetEl = this.data;
+          var soundEl = this.el;
+
+          soundEl.addEventListener('sound-ended', function () {
+            targetEl.components.sound.playSound();
+          });
+        }
+      });
+    </script>
+  -->
+
+
+          <script type="text/javascript">
+
+            document.querySelector('#hTour').addEventListener('sound-ended', function(){
+                document.querySelector('#hMusic').emit('playhMusic');
+                document.getElementById('gdn-target').setAttribute('visible', 'true')
+                document.getElementById('gdn-move').setAttribute('visible', 'true')
+            });
+
+            
+
+            function showTP() {
+                document.getElementById('tp-situ').setAttribute('visible', 'true')
+                document.getElementById('tp-target').setAttribute('visible', 'false')
+                document.getElementById('og-situ').setAttribute('visible', 'false')
+                document.getElementById('og-target').setAttribute('visible', 'true')
+                document.getElementById('wc-situ').setAttribute('visible', 'false')
+                document.getElementById('wc-target').setAttribute('visible', 'true')
+                document.querySelector('#tp-situ').emit('fadeIn');
+                document.querySelector('#og-situ').emit('fadeOut');
+                document.querySelector('#wc-situ').emit('fadeOut');
+            }
+
+            function showOG() {
+                document.getElementById('tp-situ').setAttribute('visible', 'false')
+                document.getElementById('tp-target').setAttribute('visible', 'true')
+                document.getElementById('og-situ').setAttribute('visible', 'true')
+                document.getElementById('og-target').setAttribute('visible', 'false')
+                document.getElementById('wc-situ').setAttribute('visible', 'false')
+                document.getElementById('wc-target').setAttribute('visible', 'true')
+                document.querySelector('#og-situ').emit('fadeIn');
+                document.querySelector('#tp-situ').emit('fadeOut');
+                document.querySelector('#wc-situ').emit('fadeOut');
+            }
+
+            function showWC() {
+                document.getElementById('wc-situ').setAttribute('visible', 'true')
+                document.getElementById('wc-target').setAttribute('visible', 'false')
+                document.getElementById('tp-situ').setAttribute('visible', 'false')
+                document.getElementById('tp-target').setAttribute('visible', 'true')
+                document.getElementById('og-situ').setAttribute('visible', 'false')
+                document.getElementById('og-target').setAttribute('visible', 'true')
+                document.querySelector('#wc-situ').emit('fadeIn');
+                document.querySelector('#tp-situ').emit('fadeOut');
+                document.querySelector('#og-situ').emit('fadeOut');
+
+            }
+
+        </script>
+      </a-entity>
+
+        <script type="text/javascript">
+
+        document.querySelector('#eTour').addEventListener('sound-ended', function(){
+                document.getElementById('entranceScene').setAttribute('visible', 'true')
+            });
+
+        function moveHse() {
+              document.getElementById('entranceScene').setAttribute('visible', 'false')
+              document.getElementById('entrancePan').setAttribute('visible', 'false')
+              document.getElementById('houseScene').setAttribute('visible', 'true')
+              document.getElementById('hse-panR').setAttribute('visible', 'true')
+              document.getElementById('hse-panL').setAttribute('visible', 'true')
+              document.querySelector('#gSounds').components.sound.pause();
+              document.querySelector('#hTour').emit('playhTour');
+            }
+
+          function moveGDN() {
+            document.getElementById('houseScene').setAttribute('visible', 'false')
+            document.getElementById('hse-panR').setAttribute('visible', 'false')
+            document.getElementById('hse-panL').setAttribute('visible', 'false')
+            document.getElementById('gdn-panR').setAttribute('visible', 'true')
+            document.getElementById('gdn-panL').setAttribute('visible', 'true')
+            document.querySelector('#hseGdnPan').emit('fadeIn');
+            document.querySelector('#hMusic').components.sound.pause();
+            document.querySelector('#gSounds').emit('playgSounds');
+          }
+        </script>
+
+      </a-scene>
+  </body>
+</html>

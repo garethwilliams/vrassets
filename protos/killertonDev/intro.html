@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>National Trust - Killerton House</title>
+    <meta name="description" content="National Trust - Killerton House">
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+     <script src="scripts/aframe-stereo-component.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+      <a-assets>
+        <!-- floot -->
+        <img id="floor" crossorigin="anonymous" src="assets/global/floor.jpg">
+        <img id="welcome" crossorigin="anonymous" src="assets/global/welKil.png">
+      </a-assets>
+
+      <a-entity camera position="0 0 10" cursor-visible="false" stereocam="eye:left;"></a-entity>
+
+      <a-entity class="scene" id="mainScene" visible="true">
+        <a-sky id="introSky" color="#ffffff" radius="40" rotation="0 0 0"></a-sky>
+      </a-entity>
+
+      <a-plane src="#floor" width="1200" height="1200" side="front" rotation="-90 0 0" position="0 -5 0" scale="0.05 0.05 0.05" transparent="true"></a-plane>
+
+      <a-plane src="#welcome" width="666" height="134" side="front" rotation="0 0 0" position="0 3 -26" scale="0.03 0.03 0.03" transparent="true"></a-plane>
+
+      <a-light type="ambient" intensity="1" color="#fff"></a-light>
+
+    </a-scene>
+  </body>
+</html>
