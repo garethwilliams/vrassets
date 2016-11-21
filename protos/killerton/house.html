@@ -100,7 +100,7 @@
           
 
         <!-- Audio -->
-        <a-sound src="#welcomeAud" id="welcomeS" autoplay="true" position="0 0 0" loop="true" volume="0.6"></a-sound>
+        <a-sound src="#welcomeAud" id="welcomeS" autoplay="true" position="0 0 0" loop="true" volume="0.2"></a-sound>
         <a-sound src="#bearHutAud" id="bearHut" autoplay="false" position="0 0 0" loop="true" on="playBH"></a-sound>
         <a-sound src="#hTourGAud" id="hTourG" autoplay="false" position="0 0 0" loop="false" on="playhTourG"></a-sound>
         <a-sound src="#hTourOAud" id="hTourO" autoplay="false" position="0 0 0" loop="false" on="playhTourO"></a-sound>
@@ -361,10 +361,10 @@
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'false')
-              document.querySelector('#gSounds').components.sound.pause();
-              document.querySelector('#hMusic').components.sound.pause();
-              document.querySelector('#welcomeS').components.sound.play();
-              document.querySelector('#bearHut').components.sound.pause();
+              document.querySelector('#gSounds').pause();
+              document.querySelector('#hMusic').pause();
+              document.querySelector('#welcomeS').play();
+              document.querySelector('#bearHut').pause();
             }
 
         function moveEnt() {
@@ -373,10 +373,10 @@
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'false')
+              document.querySelector('#welcomeS').pause();  
+              document.querySelector('#gSounds').play();
               document.querySelector('#eTour').emit('playeTour');
-              document.querySelector('#gSounds').emit('playgSounds');
-              document.querySelector('#welcomeS').pause();
-              document.querySelector('#gSounds').components.sound.play();  
+              document.querySelector('#gSounds').emit('playgSounds'); 
             }
 
         function moveHse() {
@@ -385,11 +385,12 @@
               document.getElementById('houseScene').setAttribute('visible', 'true')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'false')
-              document.querySelector('#gSounds').components.sound.pause();
+              document.querySelector('#gSounds').pause();
+              document.querySelector('#welcomeS').pause();
+              document.querySelector('#hMusic').play();
+              document.querySelector('#hTourS').play();
               document.querySelector('#hMusic').emit('playhMusic');
               document.querySelector('#hTourS').emit('playhTourS');
-              document.querySelector('#welcomeS').components.sound.pause();
-              document.querySelector('#hTourS').components.sound.play();
             }
 
             function moveBer() {
@@ -398,22 +399,23 @@
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'true')
-              document.querySelector('#outSounds').components.sound.pause();
-              document.querySelector('#welcomeS').components.sound.pause();
+              document.querySelector('#outSounds').pause();
+              document.querySelector('#welcomeS').pause();
+              document.querySelector('#bearHut').play();
               document.querySelector('#bearHut').emit('playBH');
-              document.querySelector('#bearHut').components.sound.play();
             }
 
           function moveGDN() {
             document.getElementById('welcomeScene').setAttribute('visible', 'false')
-              document.getElementById('entranceScene').setAttribute('visible', 'false')
-              document.getElementById('houseScene').setAttribute('visible', 'false')
-              document.getElementById('gardenScene').setAttribute('visible', 'true')
-              document.getElementById('bearScene').setAttribute('visible', 'false')
-            document.querySelector('#hMusic').components.sound.pause();
+            document.getElementById('entranceScene').setAttribute('visible', 'false')
+            document.getElementById('houseScene').setAttribute('visible', 'false')
+            document.getElementById('gardenScene').setAttribute('visible', 'true')
+            document.getElementById('bearScene').setAttribute('visible', 'false')
+            document.querySelector('#hMusic').pause();
+            document.querySelector('#welcomeS').pause();
+            document.querySelector('#outSounds').play();
+            document.querySelector('#hTourG').emit('playhTourG');
             document.querySelector('#outSounds').emit('playOSounds');
-            document.querySelector('#welcomeS').components.sound.pause();
-            document.querySelector('#outSounds').components.sound.play();
           }
 
           function menuLoader() {
