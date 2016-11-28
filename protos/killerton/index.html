@@ -18,6 +18,8 @@
       <a-assets>
         <!-- panoramas -->
         <img id="entrance" crossorigin="anonymous" src="assets/entrance/sml/entPan.jpg">
+        <img id="welBG" crossorigin="anonymous" src="assets/welcome/blur.jpg">
+        <img id="bearInside" crossorigin="anonymous" src="assets/bearhut/bearInside.jpg">
 
         <!-- 3D -->
         <img id="hseLeft" crossorigin="anonymous" src="assets/house/3d/hse-lft.jpg">
@@ -28,8 +30,6 @@
 
         <img id="bearRight" crossorigin="anonymous" src="assets/bearhut/sml/rgt-panBlur.jpg">
         <img id="bearLeft" crossorigin="anonymous" src="assets/bearhut/sml/lft-panBlur.jpg">
-
-        <img id="welBG" crossorigin="anonymous" src="assets/welcome/blur.jpg">
 
         <!-- assets -->
         <img id="target" crossorigin="anonymous" src="assets/global/target.png">
@@ -53,6 +53,7 @@
         <img id="moveGdn" crossorigin="anonymous" src="assets/house/moveGdn.png">
         <img id="moveToHse" crossorigin="anonymous" src="assets/global/moveHse.jpg">
         <img id="moveToBer" crossorigin="anonymous" src="assets/global/moveBear.jpg">
+        <img id="moveToInBer" crossorigin="anonymous" src="assets/global/moveInBear.jpg">
 
         <!-- Menu images -->
         <img id="menuEnt" crossorigin="anonymous" src="assets/global/menu/menuEnt.png">
@@ -86,15 +87,17 @@
         <audio id="eTourAud" src="assets/audio/entTourA.mp3" preload="auto">
         <audio id="outSoundsAud" src="assets/audio/outSounds.mp3" preload="auto">
 
+        <audio id="bearRoarSound" src="assets/audio/bearRoar.mp3" preload="auto">
+          <audio id="silence" src="assets/audio/silence.mp3" preload="auto">
 
       </a-assets>
 
      <a-camera stereocam="eye:left;">
 
-       <a-cursor id="cursFuse" scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="4000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #FFCF27; shader: flat" visible="true">
+       <a-cursor id="cursFuse" scale="2.5 2.5 2.5" geometry="primitive: ring; thetaStart:0; thetaLength:0;" fuse="true" fuseTimeout="4000" cursor-feedback="dur:1500; property:geometry.thetaLength; to:360;" material="color: #FFCF27; shader: flat" visible="false">
         </a-cursor> 
 
-     <!-- <a-cursor id="curs" fuse="true" fuseTimeout="6000" geometry="primitive: circle; radius: 0.5" scale="0.02 0.02 0.02" material="color: black; shader: flat" visible="true"></a-cursor> -->
+      <a-cursor id="curs" fuse="true" fuseTimeout="2000" geometry="primitive: circle; radius: 0.5" scale="0.02 0.02 0.02" material="color: #FFCF27; shader: flat" visible="true"></a-cursor>
 
       </a-camera>
           
@@ -117,13 +120,15 @@
 
         <a-sound src="#outSoundsAud" id="outSounds" autoplay="false" position="0 0 0" loop="true" on="playOSounds"></a-sound>
 
+        <a-sound src="#bearRoarSound" id="bearRoar" autoplay="false" position="0 0 0" loop="false" on="playbearRoar"></a-sound>
 
+        
         <!-- WELCOME -->
         <a-entity id="welcomeScene" visible="true" opacity="1">
 
-          <a-sky src="#welBG" id="wel-panL" stereo="eye:both" radius="5000" theta-length="360" rotation="0 -89 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+          <a-sky src="#welBG" id="wel-panL" stereo="eye:both" radius="5000" theta-length="360" rotation="0 -89 0" scale="0.8 0.8 0.8" visible="true"></a-sky>
 
-          <a-plane src="#welcome" width="586" height="336" side="front" rotation="0 0 0" position="0 3 -30" scale="0.03 0.03 0.03" transparent="true"></a-plane>
+          <a-plane src="#welcome" width="586" height="336" side="front" rotation="0 0 0" position="0 3 -30" scale="0.03 0.03 0.03" transparent="true" sound="src: #silence; loop: false; on: mousedown"></a-plane>
 
           <a-light type="ambient" intensity="1" color="#fff"></a-light>
 
@@ -187,6 +192,7 @@
                    rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
           <a-sky src="#gdnLeft" id="gdn-panL" stereo="eye:left" height="12500" rotation="0 237 0" radius="5000" theta-length="360"
                    rotation="0 100 0" scale="0.8 0.8 0.8" visible="true" ></a-sky>
+
           <a-image id="backToMenu" id="menu-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="0.6 0.6 0.6" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
 
           <a-image id="bear-target" src="#target" width="300" height="180" rotation="0 0 0" position="-110 0 788" scale="1 1 1" onclick="moveBer()" visible="true" transparent="true" data-interactive="true">
@@ -207,10 +213,24 @@
         
           <a-image id="backToMenu" id="menuBer-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="0.6 0.6 0.6" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
 
+          <a-image id="bearIn-target" src="#target" width="300" height="180" rotation="0 -45 0" position="-488 0 423" scale="1 1 1" onclick="moveInBer()" visible="true" transparent="true" data-interactive="true">
+          </a-image>
+
+          <!-- <a-image id="bearIn-move" src="#moveToInBer" width="1874" height="284" rotation="0 -220 0" position="-401 -40 300" visible="true" scale="0.07 0.07 0.07">
+          </a-image> -->
+
         </a-entity>
 
 
-        
+        <!-- BEAR HUT INSIDE -->
+        <a-entity id="bearInScene" visible="false" material="opacity: 1">
+
+          <a-sky src="#bearInside" id="inBear" rotation="0 0 0" radius="5000" theta-length="360" rotation="0 100 0" scale="0.8 0.8 0.8" visible="true"></a-sky>
+
+          <a-image id="backToMenu" id="menuBer-target" src="#backMenu" width="300" height="300" rotation="270 0 0" position="0 -400 0" scale="0.6 0.6 0.6" onclick="moveMenu()" visible="true" transparent="true" data-interactive="true"> </a-image>
+
+        </a-entity> 
+
 
         <!-- HOUSE -->
         <a-entity id="houseScene" visible="false" opacity="1">
@@ -361,8 +381,15 @@
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'false')
+              document.getElementById('bearInScene').setAttribute('visible', 'false')
+
+              document.getElementById('cursFuse').setAttribute('visible', 'false')
+              document.getElementById('curs').setAttribute('visible', 'true')
+
               document.querySelector('#gSounds').pause();
               document.querySelector('#hMusic').pause();
+              document.querySelector('#eTour').pause();
+              document.querySelector('#outSounds').pause();
               document.querySelector('#welcomeS').play();
               document.querySelector('#bearHut').pause();
             }
@@ -373,8 +400,13 @@
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'false')
+
+              document.getElementById('cursFuse').setAttribute('visible', 'true')
+              document.getElementById('curs').setAttribute('visible', 'false')
+
               document.querySelector('#welcomeS').pause();  
               document.querySelector('#gSounds').play();
+              document.querySelector('#eTour').play();
               document.querySelector('#eTour').emit('playeTour');
               document.querySelector('#gSounds').emit('playgSounds'); 
             }
@@ -385,6 +417,10 @@
               document.getElementById('houseScene').setAttribute('visible', 'true')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'false')
+
+              document.getElementById('cursFuse').setAttribute('visible', 'true')
+              document.getElementById('curs').setAttribute('visible', 'false')
+
               document.querySelector('#gSounds').pause();
               document.querySelector('#welcomeS').pause();
               document.querySelector('#hMusic').play();
@@ -399,10 +435,20 @@
               document.getElementById('houseScene').setAttribute('visible', 'false')
               document.getElementById('gardenScene').setAttribute('visible', 'false')
               document.getElementById('bearScene').setAttribute('visible', 'true')
+
+              document.getElementById('cursFuse').setAttribute('visible', 'true')
+              document.getElementById('curs').setAttribute('visible', 'false')
+
               document.querySelector('#outSounds').pause();
               document.querySelector('#welcomeS').pause();
               document.querySelector('#bearHut').play();
               document.querySelector('#bearHut').emit('playBH');
+            }
+
+            function moveInBer() {
+              document.getElementById('bearScene').setAttribute('visible', 'false')
+              document.getElementById('bearInScene').setAttribute('visible', 'true')
+              document.querySelector('#bearRoar').emit('playbearRoar');
             }
 
           function moveGDN() {
@@ -411,6 +457,10 @@
             document.getElementById('houseScene').setAttribute('visible', 'false')
             document.getElementById('gardenScene').setAttribute('visible', 'true')
             document.getElementById('bearScene').setAttribute('visible', 'false')
+
+            document.getElementById('cursFuse').setAttribute('visible', 'true')
+            document.getElementById('curs').setAttribute('visible', 'false')
+
             document.querySelector('#hMusic').pause();
             document.querySelector('#welcomeS').pause();
             document.querySelector('#outSounds').play();
@@ -442,8 +492,22 @@
 
         </script>
 
+        <script>
+          window.addEventListener('touchstart', function() {
 
+            // create new buffer source for playback with an already
+            // loaded and decoded empty sound file
+            var source = myContext.createBufferSource();
+            source.buffer = myDecodedBuffer;
 
+            // connect to output (your speakers)
+            source.connect(myContext.destination);
+
+            // play the file
+            source.noteOn(0);
+
+          }, false);
+        </script>
 
       </a-scene>
   </body>
